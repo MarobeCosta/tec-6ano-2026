@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAPA TEC | 6º ano | 2026</title>
+<style>
+  :root{
+    --tinta:#16213e; --papel:#f5f2ea; --dourado:#c9883a; --verde:#2e7d52;
+    --vermelho:#c0392b; --azul:#2c6fa6; --roxo:#6d4c91; --cinza:#9aa0ad;
+    --amarelo:#e0a92e; --sombra:0 8px 28px rgba(22,33,62,.16); --raio:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:Georgia,serif;background:
+    radial-gradient(circle at 12% 18%,rgba(201,136,58,.10),transparent 42%),
+    radial-gradient(circle at 88% 82%,rgba(44,111,166,.10),transparent 42%),var(--papel);
+    color:var(--tinta);min-height:100vh;display:flex;flex-direction:column;}
+  header.topo{position:sticky;top:0;z-index:50;background:var(--tinta);color:var(--papel);
+    display:flex;align-items:center;justify-content:space-between;padding:10px 16px;gap:10px;
+    flex-wrap:wrap;box-shadow:0 3px 14px rgba(0,0,0,.25);}
+  .topo .marca{font-weight:bold;font-size:1.05rem;}
+  .topo .marca small{display:block;font-size:.6rem;color:var(--dourado);letter-spacing:2px;font-family:system-ui,sans-serif;}
+  .topo .ident{display:flex;align-items:center;gap:10px;font-family:system-ui,sans-serif;font-size:.82rem;}
+  .topo .ident .av{width:34px;height:34px;border-radius:50%;background:var(--dourado);
+    display:grid;place-items:center;font-size:1.1rem;color:var(--tinta);}
+  .topo .ident .quem b{display:block;}
+  .topo .ident .quem span{font-size:.7rem;color:var(--cinza);}
+  .topo button.sair{background:transparent;border:1px solid var(--dourado);color:var(--dourado);
+    border-radius:30px;padding:6px 12px;cursor:pointer;font-size:.74rem;font-family:system-ui,sans-serif;transition:.2s;}
+  .topo button.sair:hover{background:var(--dourado);color:var(--tinta);}
+  .versao-fixa{font-family:system-ui,sans-serif;font-size:.6rem;letter-spacing:2px;color:var(--cinza);}
+  .deco{position:fixed;top:120px;display:flex;flex-direction:column;gap:18px;font-size:1.5rem;opacity:.28;z-index:1;pointer-events:none;}
+  .deco.esq{left:calc(50% - 450px - 25px);} .deco.dir{right:calc(50% - 450px - 25px);}
+  @media(max-width:1010px){.deco{display:none;}}
+  main{flex:1;width:100%;max-width:880px;margin:0 auto;padding:26px 18px 80px;position:relative;z-index:2;}
+  .tela{display:none;animation:surge .4s ease;} .tela.ativa{display:block;}
+  @keyframes surge{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  h1.titulo{font-size:1.7rem;margin-bottom:4px;}
+  .sub{color:#5b6273;font-size:.95rem;margin-bottom:20px;font-family:system-ui,sans-serif;}
+  .barra-nav{display:flex;align-items:center;gap:12px;margin-bottom:18px;font-family:system-ui,sans-serif;flex-wrap:wrap;}
+  .barra-nav button.voltar{background:var(--tinta);color:var(--papel);border:none;border-radius:30px;padding:7px 15px;cursor:pointer;font-size:.78rem;}
+  .migalha{font-size:.76rem;color:var(--cinza);}
+  .progresso{font-family:system-ui,sans-serif;font-size:.72rem;color:#5b6273;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+  .barra-prog{flex:1;height:7px;background:#e3ddca;border-radius:10px;overflow:hidden;}
+  .barra-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--dourado),var(--verde));width:0;transition:.5s;}
+  .grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;}
+  .card{background:#fff;border-radius:var(--raio);padding:18px 16px;cursor:pointer;box-shadow:var(--sombra);
+    border:1px solid #e7e1d2;position:relative;transition:transform .18s,box-shadow .18s;overflow:hidden;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(22,33,62,.22);}
+  .card .sem{position:absolute;top:12px;right:12px;font-size:1.15rem;}
+  .card .tag{font-family:system-ui,sans-serif;font-size:.62rem;letter-spacing:1.5px;color:var(--dourado);text-transform:uppercase;}
+  .card .numaula{display:inline-block;background:var(--tinta);color:var(--papel);font-family:system-ui,sans-serif;
+    font-size:.66rem;font-weight:bold;border-radius:8px;padding:2px 8px;margin-bottom:6px;}
+  .card h3{font-size:1.05rem;margin:4px 0;padding-right:26px;line-height:1.25;}
+  .card p{font-family:system-ui,sans-serif;font-size:.78rem;color:#5b6273;line-height:1.4;}
+  .card .rodape{margin-top:12px;font-family:system-ui,sans-serif;font-size:.7rem;color:var(--cinza);display:flex;justify-content:space-between;}
+  .faixa{height:5px;width:100%;position:absolute;left:0;bottom:0;background:var(--dourado);}
+  .card.marco{background:#fbf4e6;border-style:dashed;}
+  .card.marco .faixa{background:var(--amarelo);}
+  .login-wrap{min-height:70vh;display:grid;place-items:center;}
+  .login-card{background:#fff;border-radius:24px;box-shadow:var(--sombra);padding:34px 30px;max-width:420px;width:100%;border:1px solid #e7e1d2;}
+  .login-card .selo{font-size:2.6rem;text-align:center;}
+  .login-card h2{text-align:center;font-size:1.5rem;margin:6px 0 4px;}
+  .login-card .dica{text-align:center;font-family:system-ui,sans-serif;font-size:.78rem;color:#5b6273;margin-bottom:20px;}
+  .campo{margin-bottom:14px;}
+  .campo label{display:block;font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--dourado);margin-bottom:5px;}
+  .campo input,.campo select{width:100%;padding:11px 13px;border:1.5px solid #ddd6c4;border-radius:12px;font-size:.95rem;font-family:system-ui,sans-serif;background:#fbf9f3;}
+  .campo input:focus,.campo select:focus{outline:none;border-color:var(--dourado);}
+  .btn-entrar{width:100%;margin-top:8px;padding:13px;border:none;border-radius:14px;cursor:pointer;background:var(--tinta);color:var(--papel);font-size:1rem;letter-spacing:1px;font-family:system-ui,sans-serif;transition:.2s;}
+  .btn-entrar:hover{background:var(--dourado);color:var(--tinta);}
+  .erro{color:var(--vermelho);font-size:.76rem;font-family:system-ui,sans-serif;text-align:center;min-height:18px;margin-top:6px;}
+  .menu-comum{position:fixed;bottom:0;left:0;right:0;z-index:40;background:var(--tinta);display:flex;justify-content:center;gap:6px;padding:8px;box-shadow:0 -3px 14px rgba(0,0,0,.2);font-family:system-ui,sans-serif;}
+  .menu-comum button{background:transparent;border:none;color:var(--papel);cursor:pointer;padding:8px 14px;border-radius:30px;font-size:.76rem;transition:.2s;}
+  .menu-comum button:hover,.menu-comum button.on{background:var(--dourado);color:var(--tinta);}
+  .legenda-sem{font-family:system-ui,sans-serif;font-size:.72rem;color:#5b6273;margin-top:24px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;border-top:1px dashed #ccc4ad;padding-top:16px;}
+  .bloco-comum{background:#fff;border-radius:var(--raio);padding:22px;box-shadow:var(--sombra);border:1px solid #e7e1d2;}
+  .bloco-comum h3{font-size:1.2rem;margin-bottom:10px;}
+  .regra-item{font-family:system-ui,sans-serif;font-size:.88rem;padding:10px 0;border-bottom:1px dashed #e0d9c6;display:flex;gap:10px;}
+  .det{background:#fff;border-radius:var(--raio);padding:18px;box-shadow:var(--sombra);border:1px solid #e7e1d2;margin-bottom:16px;}
+  .det h4{font-family:system-ui,sans-serif;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dourado);margin-bottom:8px;}
+  .det ul{margin-left:18px;font-family:system-ui,sans-serif;font-size:.86rem;line-height:1.6;color:#3a4256;}
+  .ph{font-family:system-ui,sans-serif;font-size:.68rem;color:#b07d2e;background:#fbf2e0;border:1px dashed var(--dourado);border-radius:8px;padding:3px 8px;display:inline-block;margin-top:8px;}
+  .cards-aula{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:10px;}
+  .mini{background:#fbf9f3;border:1.5px solid #ddd6c4;border-radius:12px;padding:12px;font-family:system-ui,sans-serif;cursor:pointer;transition:.2s;position:relative;}
+  .mini:hover{border-color:var(--dourado);transform:translateY(-3px);}
+  .mini .t{font-size:.62rem;letter-spacing:1px;text-transform:uppercase;color:var(--dourado);}
+  .mini .n{font-size:.9rem;font-weight:bold;margin-top:4px;}
+  .mini .s{font-size:.72rem;color:#5b6273;margin-top:4px;}
+  .voltar-fixo{position:fixed;left:0;right:0;bottom:52px;z-index:45;display:flex;justify-content:center;padding:8px 12px;pointer-events:none;}
+  .voltar-fixo button{pointer-events:auto;background:var(--dourado);color:var(--tinta);border:none;border-radius:30px;padding:12px 30px;font-size:.95rem;font-weight:bold;font-family:system-ui,sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(201,136,58,.4);transition:.2s;}
+  .voltar-fixo button:hover{background:var(--tinta);color:var(--papel);}
+  .sobre-uni{background:linear-gradient(135deg,#fff,#fbf4e6);border-radius:var(--raio);padding:20px;box-shadow:var(--sombra);border:1px solid #e7e1d2;margin-bottom:20px;}
+  .sobre-uni h4{font-family:system-ui,sans-serif;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dourado);margin-bottom:8px;}
+  .sobre-uni .nome-un{font-size:1.15rem;font-weight:bold;margin-bottom:10px;color:var(--tinta);}
+  .sobre-uni ul{margin-left:18px;font-family:system-ui,sans-serif;font-size:.86rem;line-height:1.6;color:#3a4256;}
+</style>
+</head>
+<body>
+<div class="deco esq">💻<br>🖱️<br>⌨️<br>🔌<br>📱</div>
+<div class="deco dir">🤖<br>🛡️<br>🎮<br>🧩<br>🌐</div>
+
+<header class="topo" id="topo" style="display:none;">
+  <div class="marca">MAPA TEC <small>6º ANO | 2026</small></div>
+  <div class="ident"><div class="av">👤</div><div class="quem"><b id="hNome">—</b><span id="hTurma">—</span></div></div>
+  <div style="display:flex;align-items:center;gap:12px;"><span class="versao-fixa" id="vTopo"></span>
+  <button class="sair" onclick="sair()">Sair / Trocar</button></div>
+</header>
+
+<main>
+  <section class="tela ativa" id="t-login">
+    <div class="login-wrap"><div class="login-card">
+      <div class="selo">🗺️</div><h2>Mapa de Tecnologia</h2>
+      <p class="dica">Identifique-se uma vez. Você navega por todas as aulas e atividades sem repetir.</p>
+      <div class="campo"><label>Nome completo</label><input id="inNome" type="text" placeholder="Ex.: Maria Silva" autocomplete="off"></div>
+      <div class="campo"><label>Turma</label><select id="inTurma"><option value="">Selecione…</option><option>6º A</option><option>6º B</option><option>6º C</option><option>6º D</option></select></div>
+      <div class="campo"><label>Nº da chamada</label><input id="inNum" type="number" min="1" max="45" placeholder="Ex.: 12" autocomplete="off"></div>
+      <button class="btn-entrar" onclick="entrar()">ENTRAR NO MAPA →</button>
+      <div class="erro" id="erroLogin"></div>
+      <span class="versao-fixa" id="vLogin" style="display:block;text-align:center;margin-top:14px;"></span>
+    </div></div>
+  </section>
+
+  <section class="tela" id="t-bim">
+    <h1 class="titulo">Bem-vindo ao Mapa 🗺️</h1>
+    <p class="sub">Escolha o bimestre.</p>
+    <div class="grade" id="gradeBim"></div>
+    <div class="legenda-sem"><span>✅ concluído</span><span>🟡 em aberto</span><span>🔴 atrasado</span><span>🔵 disponível</span><span>⚪ futuro</span></div>
+  </section>
+
+  <section class="tela" id="t-uni">
+    <div class="barra-nav"><span class="migalha" id="migUni"></span></div>
+    <h1 class="titulo" id="tituloUni"></h1><p class="sub">Escolha a unidade.</p>
+    <div class="grade" id="gradeUni"></div>
+  </section>
+
+  <section class="tela" id="t-aula">
+    <div class="barra-nav"><span class="migalha" id="migAula"></span></div>
+    <h1 class="titulo" id="tituloAulas"></h1><p class="sub">Aulas em ordem. O número que o Alura não mostra aparece aqui.</p>
+    <div id="sobreUni"></div>
+    <div class="progresso">Progresso <div class="barra-prog"><i id="barAula"></i></div><span id="pctAula">0%</span></div>
+    <div class="grade" id="gradeAula"></div>
+  </section>
+
+  <section class="tela" id="t-cards">
+    <div class="barra-nav"><span class="migalha" id="migCards"></span></div>
+    <h1 class="titulo" id="tituloCards"></h1>
+    <div id="detAula"></div>
+    <h3 style="font-family:system-ui,sans-serif;font-size:.9rem;margin:18px 0 4px;color:var(--tinta);">Atividades desta aula</h3>
+    <p class="sub" style="margin-bottom:8px;">Conteúdo no Alura + atividade de compreensão (NAV) entre cards.</p>
+    <div class="cards-aula" id="cardsAula"></div>
+  </section>
+
+  <section class="tela" id="t-conviv">
+    <h1 class="titulo">🤝 Convivência</h1><p class="sub">Acordos combinados da nossa sala. <span class="ph">PLACEHOLDER</span></p>
+    <div class="bloco-comum"><h3>Nossos combinados</h3>
+      <div class="regra-item">🔇 <div>Silêncio durante explicações — respeito a quem fala.</div></div>
+      <div class="regra-item">🤲 <div>Ajudar o colega <b>orientando</b>, não digitando por ele.</div></div>
+      <div class="regra-item">💻 <div>Cuidar dos equipamentos: sentar, sair e desligar com cuidado.</div></div>
+      <div class="regra-item">⏰ <div>Entrar no mapa e identificar-se logo no início da aula.</div></div>
+    </div>
+  </section>
+
+  <section class="tela" id="t-jogos">
+    <h1 class="titulo">🎮 PlayTime</h1><p class="sub">Terminou a atividade? Jogue aqui. Aberto a todos. <span class="ph">PLACEHOLDER</span></p>
+    <div class="bloco-comum"><h3>Desafios de tecnologia, convivência e cibersegurança</h3>
+      <div class="cards-aula">
+        <div class="mini" onclick="alert('Jogo demo')"><div class="t">Cibersegurança</div><div class="n">🛡️ Caça à senha forte</div></div>
+        <div class="mini" onclick="alert('Jogo demo')"><div class="t">Lógica</div><div class="n">🧩 Blocos & algoritmos</div></div>
+        <div class="mini" onclick="alert('Jogo demo')"><div class="t">Convivência</div><div class="n">🤝 Atitudes na sala</div></div>
+      </div>
+      <div style="margin-top:12px;"><span class="ph">Libera por: data, Pomodoro (foco→jogo) e conclusão de card. Backlog CLD-021.</span></div>
+    </div>
+  </section>
+</main>
+
+<div class="voltar-fixo" id="voltarFixo" style="display:none;"><button id="btnVoltar" onclick="voltarContexto()">← Voltar</button></div>
+
+<nav class="menu-comum" id="menuComum" style="display:none;">
+  <button id="mb-mapa" onclick="ir('t-bim')">🗺️ Mapa</button>
+  <button id="mb-conviv" onclick="abrirComum('t-conviv')">🤝 Convivência</button>
+  <button id="mb-jogos" onclick="abrirComum('t-jogos')">🎮 PlayTime</button>
+</nav>
+
+<script>
+const VERSAO="V.00.03";
+const DADOS={"1º Bim": {"unidades": {"U.01": {"aulas": [{"rotulo": "U.01_A.01", "titulo": "Primeiros passos na tecnologia", "aula_un": "Aula 01", "cont": "Aula 01", "conteudos": ["Eixos estruturantes da tecnologia: pensamento computacional, mundo digital e cultura digital.", "Pilares do pensamento computacional: decomposição, reconhecimento de padrões, abstração e algoritmo.", "Planejamento inicial de projetos criativos em tecnologia com base em interesses pessoais e nas habilidades desejadas."], "objetivo": ["Identificar os três eixos principais que estruturam o ensino de tecnologia: pensamento computacional, mundo digital e cultura digital.", "Explicar com suas próprias palavras o que é pensamento computacional e quais são seus quatro pilares fundamentais: decomposição, padrões, abstração e algoritmo.", "Descrever os conceitos iniciais de pensamento computacional na idealização de um projeto tecnológico pessoal, como jogos, filmes ou aplicativos."], "marco": false}, {"rotulo": "U.01_A.02", "titulo": "Entrada e saída no computador", "aula_un": "Aula 02", "cont": "Aula 02", "conteudos": ["Identificação dos dispositivos tecnológicos na escola", "Dispositivos de entrada e suas funções (mouse, teclado, microfone, câmera)", "Dispositivos de saída e suas funções (monitor, impressora, projetor, caixa de som)"], "objetivo": ["Listar os principais dispositivos tecnológicos presentes no ambiente escolar, como computadores, teclados, monitores, projetores, microfones, entre outros.", "Explicar as diferenças entre dispositivos de entrada e dispositivos de saída, identificando suas funções no uso do computador.", "Classificar corretamente os dispositivos tecnológicos do ambiente escolar em dispositivos de entrada e dispositivos de saída."], "marco": false}, {"rotulo": "U.01_A.03", "titulo": "Explorando o mouse", "aula_un": "Aula 03", "cont": "Aula 03", "conteudos": ["Dispositivo de entrada: o mouse e suas funcionalidades (botão esquerdo, botão direito, scroll).", "Interação com blocos de programação no ambiente Start Lab (clicar, arrastar, soltar e deletar).", "Utilização das ferramentas criativas no Start Lab com o mouse (personalização do personagem e exploração dos blocos)."], "objetivo": ["Identificar as partes e funcionalidades básicas do mouse (botões esquerdo, direito e scroll) em um ambiente de programação visual.", "Explicar como utilizar o mouse para realizar ações como clicar, arrastar e soltar blocos no ambiente de programação Start Lab.", "Aplicar as funcionalidades do mouse na criação de programas simples com blocos, explorando a interação com o personagem e as ferramentas criativas do ambiente."], "marco": false}, {"rotulo": "U.01_A.04", "titulo": "Criando com Teclado", "aula_un": "Aula 04", "cont": "Aula 04", "conteudos": ["Exploração do teclado (teclas especiais e caracteres)", "Uso da bandeira verde e blocos de Eventos (início do algoritmo).", "Personalização de mensagens com blocos da categoria Aparência."], "objetivo": ["Identificar os principais comandos do teclado na programação utilizando o Start Lab.", "Reconhecer a função do bloco diga para construir códigos criativos no Start Lab.", "Aplicar comandos do teclado e do mouse para elaborar mensagens interativas no ambiente de programação."], "marco": false}], "sintese": ["Identificar os três eixos principais que estruturam o ensino de tecnologia: pensamento computacional, mundo digital e cultura digital.", "Explicar com suas próprias palavras o que é pensamento computacional e quais são seus quatro pilares fundamentais: decomposição, padrões, abstração e algoritmo.", "Descrever os conceitos iniciais de pensamento computacional na idealização de um projeto tecnológico pessoal, como jogos, filmes ou aplicativos.", "Listar os principais dispositivos tecnológicos presentes no ambiente escolar, como computadores, teclados, monitores, projetores, microfones, entre outros."]}, "U.02": {"aulas": [{"rotulo": "U.02_A.01 (05)", "titulo": "Explorando a cultura digital", "aula_un": "Aula 01", "cont": "Aula 05", "conteudos": ["Reflexão sobre emoções nas interações digitais.", "Importância do comportamento respeitoso nos ambientes digitais.", "Regras de convivência pessoais."], "objetivo": ["Identificar comportamentos respeitosos e inadequados nas interações digitais.", "Aplicar princípios de respeito e ética nas interações digitais.", "Analisar como as emoções digitais afetam as interações online."], "marco": false}, {"rotulo": "U.02_A.02 (06)", "titulo": "O poder das respostas", "aula_un": "Aula 02", "cont": "Aula 06", "conteudos": ["Conceito de pirâmide das emoções.", "Identificação de respostas impulsivas e reflexivas.", "Impacto das emoções nas interações digitais."], "objetivo": ["Aplicar estratégias para responder de maneira respeitosa em interações digitais.", "Diferenciar respostas respeitosas de impulsivas em situações de comunicação digital.", "Avaliar o impacto das emoções nas respostas digitais."], "marco": false}, {"rotulo": "U.02_A.03 (07)", "titulo": "Tirando dúvidas corretamente", "aula_un": "Aula 03", "cont": "Aula 07", "conteudos": ["Como fazer perguntas claras e objetivas.", "Estratégias de criação de boas perguntas.", "Análise de perguntas inadequadas."], "objetivo": ["Aplicar estratégias para fazer perguntas claras no fórum.", "Analisar exemplos de perguntas inadequadas e suas melhorias.", "Criar perguntas objetivas e respeitosas no fórum."], "marco": false}, {"rotulo": "U.02_A.04 (08)", "titulo": "Desvendando a Obsolescência Programada", "aula_un": "Aula 04", "cont": "Aula 08", "conteudos": ["Conceito de obsolescência programada.", "Impactos ambientais do lixo eletrônico.", "Soluções para consumo sustentável de tecnologia."], "objetivo": ["Compreender o conceito de obsolescência programada e seus impactos.", "Analisar as consequências ambientais do consumo excessivo de tecnologia.", "Propor soluções para reduzir o desperdício de aparelhos tecnológicos."], "marco": false}], "sintese": ["Identificar comportamentos respeitosos e inadequados nas interações digitais.", "Aplicar princípios de respeito e ética nas interações digitais.", "Analisar como as emoções digitais afetam as interações online.", "Aplicar estratégias para responder de maneira respeitosa em interações digitais."]}, "U.01+ U.02": {"aulas": [{"rotulo": "Avaliação das unidades: \n \nU.01", "titulo": "Avaliação das unidades:    U.01 – Introdução à computação: iniciando meus estudos  U.02 – Cultura Digital: uma aventura no fórum com Cody", "aula_un": "x", "cont": "9 e 10", "conteudos": ["U.01 – Introdução à computação: iniciando meus estudos", "U.02 – Cultura Digital: uma aventura no fórum com Cody"], "objetivo": ["Reconhecer e identificar os principais componentes de um computador, compreendendo como os dispositivos de entrada e saída permitem a comunicação entre o computador e o mundo externo.", "Refletir sobre o uso responsável das tecnologias digitais, analisando comportamentos adequados de comunicação em ambientes digitais e o impacto do consumo de tecnologia na sociedade."], "marco": true}], "sintese": []}, "U.03": {"aulas": [{"rotulo": "U.03_A.01 (11)", "titulo": "Iniciando a exploração", "aula_un": "Aula 01", "cont": "Aula 11", "conteudos": ["Ambientalização no StartLab.", "Criação e edição de personagens.", "Composição e personalização de personagens."], "objetivo": ["Selecionar personagens na biblioteca do ambiente de programação.", "Duplicar e editar personagens para criar novos personagens combinados.", "Renomear os personagens criados."], "marco": false}, {"rotulo": "U.03_A.02 (12)", "titulo": "Ensinando o computador", "aula_un": "Aula 02", "cont": "Aula 12", "conteudos": ["Revisão e continuação do projeto anterior.", "Introdução à programação no StartLab.", "Criação de sequências de animação."], "objetivo": ["Conhecer a área de código do startlab.", "Localizar os blocos de eventos, controle e aparência.", "Implementar um algoritmo para alterar fantasias."], "marco": false}, {"rotulo": "U.03_A.03 (13)", "titulo": "Reconhecendo padrões", "aula_un": "Aula 03", "cont": "Aula 13", "conteudos": ["Introdução à programação no StartLab.", "Adicionar e modificar fantasias no Start Lab.", "Otimização de códigos com blocos de controle."], "objetivo": ["Reconhecer padrões e automatizar tarefas.", "Depurar e refinar códigos para eficiência.", "Adicionar, modificar e nomear os personagens no StartLab."], "marco": false}, {"rotulo": "U.03_A.04 (14)", "titulo": "Explorando cenários", "aula_un": "Aula 04", "cont": "Aula 14", "conteudos": ["Seleção e adição de cenários", "Copiar e colar elementos visuais", "Diferenças nas ferramentas de edição"], "objetivo": ["Diferenciar atores e cenários no StartLab.", "Modificar cenários no StartLab.", "Comparar e diferenciar ferramentas de edição de imagens."], "marco": false}, {"rotulo": "U.03_A.05 (15)", "titulo": "Cenários criativos", "aula_un": "Aula 05", "cont": "Aula 15", "conteudos": ["N/C*", "Troca de cenários no palco", "Estruturas de repetição na programação", "Animação de personagens com fantasias"], "objetivo": ["N/C*", "Programar a troca de cenários no projeto.", "Utilizar estruturas de repetição no código.", "Criar animações com troca de fantasias."], "marco": false}, {"rotulo": "", "titulo": "Semana para nivelamento", "aula_un": "x", "cont": "15 e 16", "conteudos": [], "objetivo": [], "marco": true}, {"rotulo": "Avaliação das unidades: \n \n U03", "titulo": "Avaliação das unidades:     U03 – Lógica de programação: exploração criativa pt 1", "aula_un": "x", "cont": "17 e 18", "conteudos": ["U03 – Lógica de programação: exploração criativa pt 1"], "objetivo": ["Avaliar a compreensão e aplicação de algoritmos simples no StartLab, utilizando sequências de comandos e estruturas de repetição para controlar personagens e cenários em um projeto."], "marco": true}], "sintese": ["Selecionar personagens na biblioteca do ambiente de programação.", "Duplicar e editar personagens para criar novos personagens combinados.", "Renomear os personagens criados.", "Conhecer a área de código do startlab."]}, "U.01+ U.02+ U.03": {"aulas": [{"rotulo": "", "titulo": "Recuperação do bimestre", "aula_un": "x", "cont": "19 e 20", "conteudos": [], "objetivo": [], "marco": true}], "sintese": []}}}, "2º Bim": {"unidades": {"U.01": {"aulas": [{"rotulo": "U.01_A.01 (21)", "titulo": "Cenários criativos   (VER SE REPETE POIS ESTAVA NA UNIDADE 3 - PARTE 1 -1º BIM)", "aula_un": "Aula 01", "cont": "Aula 21", "conteudos": ["Criação de cenários personalizados.", "Programação da troca de cenários.", "Salvar e compartilhar o projeto."], "objetivo": ["Modificar cenários variados", "Implementar o algoritmo que trocam os cenários", "Compartilhar o projeto finalizado"], "marco": false}, {"rotulo": "U.01_A.02 (22)", "titulo": "Cartão animado", "aula_un": "Aula 02", "cont": "Aula 22", "conteudos": ["Escolha de temas para o cartão animado.", "Selecionar os atores do cartão", "Noções de segurança online, evitando o compartilhamento de informações pessoais."], "objetivo": ["Utilizar atores e cenários para um cartão animado.", "Adicionar e organizar textos e personagens no cenário.", "Identificar boas práticas de segurança online."], "marco": false}, {"rotulo": "U.01_A.03 (23)", "titulo": "Efeitos divertidos", "aula_un": "Aula 03", "cont": "Aula 23", "conteudos": ["Efeitos visuais em personagens (cor e turbilhão).", "Lógica de repetição com aumento e diminuição de valores.", "Controle de efeitos para manter o comportamento esperado do algoritmo."], "objetivo": ["Compreender como a alteração de efeitos visuais modifica o comportamento do personagem.", "Aplicar repetição com aumento e retorno de valores para controlar efeitos visuais.", "Analisar a necessidade de ajustar valores para manter a legibilidade e o funcionamento do algoritmo."], "marco": false}, {"rotulo": "U.01_A.04 (24)", "titulo": "Reutilização de Código", "aula_un": "Aula 04", "cont": "Aula 24", "conteudos": ["Algoritmos com repetições positivas e negativas", "Uso de blocos de aparência para modificar efeitos visuais.", "Abstração e reutilização de códigos em diferentes atores do projeto."], "objetivo": ["Reutilizar e adaptar códigos desenvolvidos previamente", "Experimentar diferentes efeitos visuais para os personagens.", "Utilizar a lógica de repetição com aumento positiva e negativa para criar efeitos dinâmicos."], "marco": false}, {"rotulo": "", "titulo": "Avaliação das unidades:     - Lógica de programação: exploração criativa pt 2", "aula_un": "x", "cont": "25 e 26", "conteudos": [], "objetivo": [], "marco": true}], "sintese": ["Modificar cenários variados", "Implementar o algoritmo que trocam os cenários", "Compartilhar o projeto finalizado", "Utilizar atores e cenários para um cartão animado."]}, "U.02": {"aulas": [{"rotulo": "U.02_A.01 (27)", "titulo": "Criando um concurso de máquinas", "aula_un": "Aula 01", "cont": "Aula 27", "conteudos": ["O que é uma coleção", "Coleção de elementos", "Planejamento de Projeto Interativo"], "objetivo": ["Compreender a proposta do projeto \"Concurso de Máquinas\".", "Identificar a necessidade de organizar itens em coleções.", "Planejar a seleção de itens reais e a criação de um item fictício para o concurso."], "marco": false}, {"rotulo": "U.02_A.02 (28)", "titulo": "Criando fantasias", "aula_un": "Aula 02", "cont": "Aula 28", "conteudos": ["Ferramentas de desenho (Start Lab)", "Representação de Dados (número, texto, imagem)", "Organização de Fantasias/Atores"], "objetivo": ["Utilizar as ferramentas de desenho do Start Lab para criar elementos visuais.", "Nomear fantasias de atores de forma significativa.", "Compreender que elementos podem ser representados por números, textos e imagens"], "marco": false}, {"rotulo": "U.02_A.03 (29)", "titulo": "Sorteando elementos", "aula_un": "Aula 03", "cont": "Aula 29", "conteudos": ["Blocos de Eventos (bandeira verde)", "Blocos de Aparência (Mudar fantasia para)", "Bloco de operadores (número aleatório)"], "objetivo": ["Aplicar blocos de evento para iniciar a execução do programa.", "Utilizar o bloco \"Mudar fantasia para\" para exibir fantasias.", "Implementar o bloco \"número aleatório\" para sortear imagens dinamicamente."], "marco": false}, {"rotulo": "U.02_A.04 (30)", "titulo": "Adicionando interação", "aula_un": "Aula 04", "cont": "Aula 30", "conteudos": ["Criação de Botões", "Blocos de Aparência (Diga)", "Sensores (Pergunte e Espere, Resposta)"], "objetivo": ["Criar um botão interativo para iniciar a interação do usuário.", "Utilizar blocos de \"Diga\" para exibir mensagens de boas-vindas.", "Implementar o bloco \"Pergunte e Espere\" para coletar respostas do usuário."], "marco": false}, {"rotulo": "", "titulo": "Semana para nivelamento", "aula_un": "x", "cont": "31 e 32", "conteudos": [], "objetivo": [], "marco": true}, {"rotulo": "U.02_A.05 (33)", "titulo": "Validando respostas", "aula_un": "Aula 05", "cont": "Aula 33", "conteudos": ["Estruturas condicionais (Se Então)", "Operadores de comparação (contém)", "Tipo de dado Booleano"], "objetivo": ["Aplicar o bloco condicional \"Se Então\" para verificar condições.", "Utilizar operadores de comparação (contém) para validar respostas.", "Compreender o tipo de dado booleano (verdadeiro/falso)."], "marco": false}, {"rotulo": "U.02_A.06 (34)", "titulo": "Comparando respostas", "aula_un": "Aula 06", "cont": "Aula 34", "conteudos": ["Operador de igualdade", "Sensor \"Nome da Fantasia\"", "Validação dinâmica de respostas"], "objetivo": ["Diferenciar o uso dos operadores \"igualdade\" e \"contém\".", "Utilizar o sensor \"nome da fantasia de ator\" para validação dinâmica.", "Ajustar a lógica de validação para considerar variações na entrada do usuário."], "marco": false}, {"rotulo": "U.02_A.07 (35)", "titulo": "Melhorando a experiência", "aula_un": "Aula 07", "cont": "Aula 35", "conteudos": ["Blocos de Controle (\"Se então senão\")", "Feedback ao usuário", "Design de interação (UX)"], "objetivo": ["Implementar o bloco condicional \"Se então senão\" para fornecer feedback completo.", "Criar mensagens personalizadas para acertos e erros do usuário.", "Desenvolver abordagem respeitosa e incentivadora ao lidar com erros."], "marco": false}, {"rotulo": "U.02_A.08 (36)", "titulo": "Reflexão", "aula_un": "Aula 08", "cont": "Aula 36", "conteudos": ["Revisão de conceitos (coleções, tipos de dados, condicionais)", "Processo de aprendizagem e reflexão", "Identificação de desafios e próximos passos"], "objetivo": ["Refletir sobre a conexão dos novos conhecimentos com saberes prévios.", "Identificar novas ideias e a ampliação do pensamento proporcionada pela unidade.", "Formular perguntas e desafios futuros para aprofundar o aprendizado."], "marco": false}, {"rotulo": "", "titulo": "Avaliação da unidade:     - Tipos de dados: criando uma coleção de máquinas", "aula_un": "x", "cont": "37 e 38", "conteudos": [], "objetivo": [], "marco": true}], "sintese": ["Compreender a proposta do projeto \"Concurso de Máquinas\".", "Identificar a necessidade de organizar itens em coleções.", "Planejar a seleção de itens reais e a criação de um item fictício para o concurso.", "Utilizar as ferramentas de desenho do Start Lab para criar elementos visuais."]}, "U.01+ U.02": {"aulas": [{"rotulo": "", "titulo": "Recuperação do bimestre", "aula_un": "x", "cont": "39 e 40", "conteudos": [], "objetivo": [], "marco": true}], "sintese": []}}}};
+document.querySelectorAll("#vTopo,#vLogin").forEach(e=>e.textContent=VERSAO);
+const CHAVE="mapa_tec_6ano_2026_ident";
+
+function entrar(){
+  const nome=inNome.value.trim(),turma=inTurma.value,num=inNum.value.trim(),erro=erroLogin;
+  if(!nome||!turma||!num){erro.textContent="Preencha nome, turma e número.";return;}
+  const id={nome,turma,num};
+  try{localStorage.setItem(CHAVE,JSON.stringify(id));}catch(e){}
+  aplicarIdent(id);ir("t-bim");
+}
+function aplicarIdent(id){
+  hNome.textContent=id.nome;hTurma.textContent=id.turma+" · nº "+id.num;
+  topo.style.display="flex";menuComum.style.display="flex";
+}
+function sair(){
+  if(!confirm("Sair e liberar para outro estudante se identificar?"))return;
+  try{localStorage.removeItem(CHAVE);}catch(e){}
+  topo.style.display="none";menuComum.style.display="none";
+  inNome.value="";inTurma.value="";inNum.value="";ir("t-login");
+}
+let telaAnterior="t-bim";
+const VOLTA={"t-uni":"t-bim","t-aula":"t-uni","t-cards":"t-aula"};
+function ir(id){
+  document.querySelectorAll(".tela").forEach(t=>t.classList.remove("ativa"));
+  document.getElementById(id).classList.add("ativa");
+  window.scrollTo({top:0,behavior:"smooth"});
+  document.querySelectorAll(".menu-comum button").forEach(b=>b.classList.remove("on"));
+  if(id==="t-conviv")document.getElementById("mb-conviv").classList.add("on");
+  else if(id==="t-jogos")document.getElementById("mb-jogos").classList.add("on");
+  else document.getElementById("mb-mapa").classList.add("on");
+  // voltar-fixo: aparece em telas internas e nas comuns
+  const vf=document.getElementById("voltarFixo");
+  if(id==="t-login"||id==="t-bim"){vf.style.display="none";}
+  else{vf.style.display="flex";}
+}
+function voltarContexto(){
+  const atual=document.querySelector(".tela.ativa").id;
+  if(atual==="t-conviv"||atual==="t-jogos"){voltarComum();return;}
+  const dest=VOLTA[atual]||"t-bim";ir(dest);
+}
+function abrirComum(id){telaAnterior=document.querySelector(".tela.ativa").id;ir(id);}
+function voltarComum(){ir(telaAnterior);}
+
+// status placeholder: 2º bim U.02 A.05/A.06 = atual (disponível); 1º bim concluído; resto futuro
+function statusAula(bim,cont){
+  const n=parseInt((cont.match(/\d+/)||["0"])[0]);
+  if(bim==="1º Bim")return "✅";
+  if(n===33||n===34)return "🔵";   // aulas da semana
+  if(n<33)return "✅";
+  return "⚪";
+}
+function statusBim(bim){return bim==="1º Bim"?"✅":"🔵";}
+
+let curBim="",curUn="";
+function renderBim(){
+  const g=gradeBim;g.innerHTML="";
+  Object.keys(DADOS).forEach(bim=>{
+    const nun=Object.keys(DADOS[bim].unidades).length;
+    g.innerHTML+=`<div class="card" onclick="abrirBim('${bim}')"><span class="sem">${statusBim(bim)}</span>
+      <div class="tag">Bimestre</div><h3>${bim}</h3><p>${nun} unidade(s)</p>
+      <div class="rodape"><span>abrir</span><span>→</span></div><div class="faixa"></div></div>`;
+  });
+}
+function abrirBim(bim){
+  curBim=bim;migUni.textContent=bim;tituloUni.textContent=bim+" · Unidades";
+  const g=gradeUni;g.innerHTML="";
+  Object.keys(DADOS[bim].unidades).forEach(un=>{
+    const aulas=DADOS[bim].unidades[un].aulas;
+    const reais=aulas.filter(a=>!a.marco).length;
+    g.innerHTML+=`<div class="card" onclick="abrirUni('${un}')"><span class="sem">${statusBim(bim)}</span>
+      <div class="tag">Unidade</div><h3>${un}</h3><p>${reais} aula(s) + marcos</p>
+      <div class="rodape"><span>ver aulas</span><span>→</span></div><div class="faixa"></div></div>`;
+  });
+  ir("t-uni");
+}
+function nomeUnidade(un,aulas){
+  // tenta achar nome descritivo no titulo de um marco de avaliacao, senao usa codigo
+  for(const a of aulas){ if(a.marco && a.titulo.includes(un.replace("U.0",""))){} }
+  return un;
+}
+function abrirUni(un){
+  curUn=un;migAula.textContent=curBim+" › "+un;tituloAulas.textContent=un;
+  const ud=DADOS[curBim].unidades[un];const aulas=ud.aulas;const g=gradeAula;g.innerHTML="";
+  // card sobre a unidade
+  const sint=ud.sintese||[];
+  let sobre="";
+  if(sint.length){
+    sobre=`<div class="sobre-uni"><h4>📘 Sobre esta unidade</h4>
+      <div class="nome-un">${un}</div>
+      <p style="font-family:system-ui,sans-serif;font-size:.8rem;color:#5b6273;margin-bottom:8px;">O que você vai aprender aqui:</p>
+      <ul>${sint.map(s=>`<li>${s}</li>`).join("")}</ul></div>`;
+  }else{
+    sobre=`<div class="sobre-uni"><h4>📘 Sobre esta unidade</h4><div class="nome-un">${un}</div>
+      <p style="font-family:system-ui,sans-serif;font-size:.82rem;color:#5b6273;">Período de avaliação / nivelamento / recuperação.</p></div>`;
+  }
+  document.getElementById("sobreUni").innerHTML=sobre;
+  let feitas=0,reais=0;
+  aulas.forEach((a,i)=>{
+    if(a.marco){
+      g.innerHTML+=`<div class="card marco"><span class="sem">${statusBim(curBim)}</span>
+        <div class="tag">Marco</div><h3 style="font-size:.95rem;">${a.titulo}</h3>
+        <div class="rodape"><span>${a.cont}</span></div><div class="faixa"></div></div>`;
+    }else{
+      reais++;const st=statusAula(curBim,a.cont);if(st==="✅")feitas++;
+      const ng=(a.cont.match(/\d+/)||[""])[0];
+      g.innerHTML+=`<div class="card" onclick="abrirAula('${un}',${i})"><span class="sem">${st}</span>
+        <span class="numaula">Aula ${ng} · ${a.rotulo}</span>
+        <h3>${a.titulo}</h3><p>${(a.objetivo[0]||"Conteúdo e atividades.").slice(0,70)}</p>
+        <div class="rodape"><span>entrar</span><span>→</span></div><div class="faixa"></div></div>`;
+    }
+  });
+  const pct=reais?Math.round(feitas/reais*100):0;
+  barAula.style.width=pct+"%";pctAula.textContent=pct+"%";
+  ir("t-aula");
+}
+function abrirAula(un,i){
+  const a=DADOS[curBim].unidades[un].aulas[i];
+  const ng=(a.cont.match(/\d+/)||[""])[0];
+  tituloCards.textContent="Aula "+ng+" · "+a.titulo;
+  migCards.textContent=curBim+" › "+un+" › "+a.rotulo;
+  let d="";
+  if(a.conteudos.length){d+=`<div class="det"><h4>📘 Conteúdos</h4><ul>${a.conteudos.map(c=>`<li>${c}</li>`).join("")}</ul></div>`;}
+  if(a.objetivo.length){d+=`<div class="det"><h4>🎯 Objetivos</h4><ul>${a.objetivo.map(c=>`<li>${c}</li>`).join("")}</ul></div>`;}
+  detAula.innerHTML=d||`<div class="det"><span class="ph">Conteúdo a detalhar.</span></div>`;
+  cardsAula.innerHTML=`
+    <div class="mini" onclick="alert('Abre no Alura (link do card)')"><div class="t">Alura</div><div class="n">📺 Cards da aula</div><div class="s">Vídeo + transcrição</div></div>
+    <div class="mini" onclick="alert('NAV de compreensão (a produzir)')"><div class="t">Compreensão</div><div class="n">📝 NAV da aula</div><div class="s">Responda e avance</div></div>
+    <div class="mini" onclick="alert('Faça como eu fiz (a produzir)')"><div class="t">Produção</div><div class="n">✏️ Faça como eu fiz</div><div class="s">Assunto principal</div></div>`;
+  ir("t-cards");
+}
+(function init(){
+  renderBim();
+  let id=null;try{const raw=localStorage.getItem(CHAVE);if(raw)id=JSON.parse(raw);}catch(e){}
+  if(id&&id.nome){aplicarIdent(id);ir("t-bim");}else{ir("t-login");}
+})();
+</script>
+</body>
+</html>
