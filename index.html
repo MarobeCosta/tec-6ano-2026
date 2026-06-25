@@ -3,8 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAV04-REV-TEC6-V01.02 · 6º ANO · Tipos de Dados · 2026</title>
+<title>NAV04-REV-TEC6-V01.10 · 6º ANO · Tipos de Dados · 2026</title>
 <!--
+  V01.10 · 5 BLOCOS COMPLETOS (sobre V01.04) · comando vindo do 9º ano:
+  · B0 · AUDITORIA das 22 questões · gabaritos OK · S.02.06 OK (correta nunca mais longa) · 11A/11B sem trinca · 0 correções necessárias (base já limpa)
+  · B1 · notas por metade INNER · já existia (V01.03)
+  · B2 · título articulado · já existia (V01.04)
+  · B3 · hierarquia de tamanho · já existia (V01.04)
+  · B4 · QUESTÕES PAREADAS · QDA2 mostra "Lembrete da parte 1" (trecho da QDA1) + botão que abre modal só-leitura da questão anterior (verEnunciadoAnterior)
+  · B5 · identificação por nome · já existia (autoDetectarGenero + banco NOMES_FEM/MASC + escolha manual p/ nome novo)
+
+  V01.04 · 3 UPGRADES (sobre V01.03) · comando vindo do 8º ano:
+  · U1 · notas por metade INNER · JÁ existia desde V01.03 (mantido)
+  · U2 · TÍTULO ARTICULADO · nova 1ª linha do cabeçalho ".frase-tematica-titulo" = "🗂️ Dados que organizam o cuidado" (une Tipos de dados + cuidado das campanhas)
+  · U3 · HIERARQUIA DE TAMANHO · título 26px (19px mobile) > tema do mês 18px (14px mobile) > subtema 13px (11px mobile) · aplicado nos 2 blocos CSS + 3 media-queries
+
+  V01.03 · NOTAS POR METADE · MODELO INNER (sobre V01.02):
+  · Pódium parcial CORRIGIDO: nota agora sobre as 11 questões da 1ª metade (escala 0–10) · acertar 11 = 10,0 (antes era /22, teto 5,0)
+  · Resultado final: novo card com 3 NOTAS · Parte 1 (Q1–11, 0–10) · Parte 2 (Q12–22, 0–10) · Nota Final (média das duas, 0–10)
+  · Bate com o relatório INNER (média aritmética entre metades, não somatória sobre 22)
+
   V01.02 · TEMA DA SEMANA ATUALIZADO (sobre V01.01):
   · Cabeçalho linha 1: "Lógica & Paz Digital" → "Junho Violeta & Vermelho" (cores inline: violeta #7C3AED + vermelho #DC2626)
   · Cabeçalho linha 2: agora mostra o PERÍODO "23 a 28.06.2026 · Pessoa Idosa & Doação de Sangue"
@@ -928,7 +946,49 @@ body.feedback-erro {
 }
 .pp-botao:hover { transform: translateY(-2px); }
 
+/* ============ 3 NOTAS (resultado final · modelo INNER) ============ */
+.tres-notas-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin: 20px auto; max-width: 660px;
+}
+.tn-card {
+  background: var(--branco); border-radius: 18px;
+  padding: 18px 10px; text-align: center;
+  box-shadow: 0 6px 20px rgba(107, 75, 156, 0.18);
+  border-top: 5px solid var(--azul-paz);
+}
+.tn-card-total { border-top-color: var(--verde-vida); background: var(--verde-claro); }
+.tn-titulo { font-size: 16px; font-weight: 800; color: var(--roxo-conviva); }
+.tn-sub { font-size: 12px; color: var(--cinza-medio); margin: 2px 0 8px; }
+.tn-nota { font-size: 40px; font-weight: 800; color: var(--azul-paz); line-height: 1; }
+.tn-nota.medio { color: var(--laranja-energia); }
+.tn-nota.baixo { color: var(--vermelho-alerta); }
+.tn-card-total .tn-nota { color: var(--verde-vida); }
+.tn-detalhe { font-size: 11px; color: var(--cinza-medio); margin-top: 8px; }
+@media (max-width: 480px) {
+  .tres-notas-grid { grid-template-columns: 1fr; }
+}
+
 .tela-resultado { display: none; }
+
+/* ============ BLOCO 4 · QUESTÕES PAREADAS (QDA2 → lembrete QDA1) ============ */
+.resumo-par { background: #FFF8E7; border-left: 4px solid var(--laranja-energia); border-radius: 10px; padding: 12px 14px; margin: 10px 0 14px; font-size: 14px; line-height: 1.5; color: #5a4a2a; }
+.resumo-par-lbl { font-weight: 700; color: var(--laranja-energia); display: block; margin-bottom: 4px; }
+.resumo-par-btn { display: inline-block; margin-top: 8px; background: var(--azul-paz); color: #fff; border: none; padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.vea-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 16px; }
+.vea-card { background: #fff; border-radius: 18px; max-width: 640px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 24px; position: relative; box-shadow: 0 16px 50px rgba(0,0,0,0.35); }
+.vea-fechar { position: absolute; top: 12px; right: 14px; background: var(--cinza-suave); border: none; width: 34px; height: 34px; border-radius: 50%; font-size: 16px; cursor: pointer; }
+.vea-titulo { font-size: 18px; font-weight: 800; color: var(--roxo-conviva); margin-bottom: 14px; padding-right: 30px; }
+.vea-ctx { font-size: 15px; line-height: 1.55; color: #333; margin: 0 0 10px; }
+.vea-fala { background: var(--roxo-claro); border-radius: 10px; padding: 12px; font-style: italic; margin: 10px 0; }
+.vea-perg { font-weight: 700; font-size: 16px; margin: 12px 0; color: var(--azul-paz); }
+.vea-alt { border: 2px solid var(--cinza-suave); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 14px; }
+.vea-alt.certa { border-color: var(--verde-vida); background: var(--verde-claro); }
+.vea-resp { margin: 12px 0; padding: 10px 12px; border-radius: 10px; font-size: 14px; }
+.vea-resp.ok { background: var(--verde-claro); }
+.vea-resp.no { background: #FBE9E9; }
+.vea-lock { display: block; font-size: 12px; color: var(--cinza-medio); margin-top: 4px; }
+.vea-voltar { width: 100%; margin-top: 14px; background: linear-gradient(135deg, var(--verde-vida), #2E6029); color: #fff; border: none; padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; }
 
 .card-pontuacao {
   background: var(--branco); border-radius: 24px;
@@ -1473,8 +1533,17 @@ body.feedback-erro {
   gap: 2px;
 }
 
+.frase-tematica-titulo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #4A2A7A;
+  text-shadow: 2px 2px 0 rgba(255,255,255,0.85), -1px -1px 0 rgba(255,255,255,0.6);
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  line-height: 1.15;
+}
 .frase-tematica-linha1 {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 800;
   color: #6B4B9C;
   text-shadow: 2px 2px 0 rgba(255,255,255,0.8), -1px -1px 0 rgba(255,255,255,0.6);
@@ -1548,7 +1617,8 @@ body.feedback-erro {
     text-align: center;
     align-items: center;
   }
-  .frase-tematica-linha1 { font-size: 18px; }
+  .frase-tematica-titulo { font-size: 19px; }
+  .frase-tematica-linha1 { font-size: 14px; }
   .frase-tematica-linha2 { font-size: 11px; }
   .frase-pombinha { display: none; }
 }
@@ -2253,8 +2323,17 @@ body.modo-prova select {
   gap: 2px;
 }
 
+.frase-tematica-titulo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #4A2A7A;
+  text-shadow: 2px 2px 0 rgba(255,255,255,0.85), -1px -1px 0 rgba(255,255,255,0.6);
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  line-height: 1.15;
+}
 .frase-tematica-linha1 {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 800;
   color: #6B4B9C;
   text-shadow: 2px 2px 0 rgba(255,255,255,0.8), -1px -1px 0 rgba(255,255,255,0.6);
@@ -2328,7 +2407,8 @@ body.modo-prova select {
     text-align: center;
     align-items: center;
   }
-  .frase-tematica-linha1 { font-size: 18px; }
+  .frase-tematica-titulo { font-size: 19px; }
+  .frase-tematica-linha1 { font-size: 14px; }
   .frase-tematica-linha2 { font-size: 11px; }
   .frase-pombinha { display: none; }
 }
@@ -2697,7 +2777,8 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
 }
 @media (max-width: 600px) {
   .frase-pombinha { width: 22px; height: 22px; }
-  .frase-tematica-linha1 { font-size: 18px !important; }
+  .frase-tematica-titulo { font-size: 19px !important; }
+  .frase-tematica-linha1 { font-size: 14px !important; }
   .frase-tematica-linha2 { font-size: 11px !important; }
 }
 /* ============ ÍCONE MINHA ÁREA · MINI-CARD FLUTUANTE ============ */
@@ -3160,6 +3241,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
 
 <!-- Frase temática fixa · topo esquerdo · todas as páginas -->
 <div class="frase-tematica">
+  <div class="frase-tematica-titulo">🗂️ Dados que organizam o cuidado</div>
   <div class="frase-cabecalho-linha1">
     <svg class="frase-pombinha pombinha-esq" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="15" cy="17" rx="7" ry="4" fill="#FFFFFF" stroke="#6B4B9C" stroke-width="0.5"/>
@@ -5562,6 +5644,19 @@ function renderizarQuestao() {
   const contextos = g === 'M' ? q.contexto_M : q.contexto_F;
   const pergunta = g === 'M' ? q.pergunta_M : q.pergunta_F;
   const colega = g === 'M' ? q.colega_M : q.colega_F;
+
+  // BLOCO 4 · resumo da QDA1 pareada (aparece só nas QDA2)
+  let resumoPar = '';
+  if (q.qda === 2) {
+    const par = questoes.find(x => x.qba === q.qba && x.qda === 1);
+    if (par) {
+      const ctxPar = (g === 'M' ? par.contexto_M : par.contexto_F) || [];
+      const trecho = ctxPar[0] || '';
+      if (trecho) {
+        resumoPar = `<div class="resumo-par"><span class="resumo-par-lbl">📌 Lembrete da parte 1:</span> ${trecho} <button class="resumo-par-btn" onclick="verEnunciadoAnterior(${par.qpa})">👁️ ver questão anterior completa</button></div>`;
+      }
+    }
+  }
   
   aplicarTomAula(q.aula);
   aplicarTomBloom(q.sb_bloom);
@@ -5644,6 +5739,7 @@ function renderizarQuestao() {
         <div class="bloco-unidade">📍 ${q.unidade}</div>
         <div class="titulo-questao">QPA.${String(q.qpa).padStart(2,'0')} · 🧠 ${titulo}</div>
         <div class="ref-questao">🔗 QBA.${String(q.qba).padStart(2,'0')} · QDA.${String(q.qda).padStart(2,'0')} · QPA.${String(q.qpa).padStart(2,'0')} (reorganizada por aula)</div>
+        ${resumoPar}
         <div class="contexto">${contextos.map((c, i) => `<div class="bloco-marcado" data-marc="ctx${i+1}"><span class="marcador-bloco">CTX.${String(i+1).padStart(2,'0')}</span><p>${c}</p>${cb('ctx'+(i+1))}</div>`).join('')}</div>
         <div class="bloco-marcado" data-marc="fp2"><span class="marcador-bloco">F.P2.01</span><div class="fala-colega">"${q.fala}" <em>— ${colega}</em></div>${cb('fp2')}</div>
         <div class="bloco-marcado" data-marc="q"><span class="marcador-bloco">Q.01</span><div class="pergunta">❓ ${pergunta}</div>${cb('q')}</div>
@@ -6392,9 +6488,11 @@ function mostrarPodiumParcial() {
   });
   const total = questoes.length;
   const faltam = total - respondidas;
+  const metadeQ = Math.ceil(total / 2); // 22 → 11 questões na 1ª metade
 
-  // Nota parcial = proporcional ao total (escala 0–10)
-  const notaParcial = (acertos / total * 10);
+  // Nota parcial = proporcional à 1ª METADE (escala 0–10) · acertar as 11 = 10,0
+  // Bate com o INNER: média aritmética entre as duas metades, cada uma 0–10
+  const notaParcial = (acertos / metadeQ * 10);
   const notaStr = notaParcial.toFixed(1).replace('.', ',');
   const notaCls = notaParcial >= 7 ? '' : (notaParcial >= 5 ? 'medio' : 'baixo');
 
@@ -6426,7 +6524,7 @@ function mostrarPodiumParcial() {
       <div class="pp-nota-box">
         <div class="pp-nota-lbl">Nota parcial (prévia · escala 0 a 10)</div>
         <div class="pp-nota-num ${notaCls}">${notaStr}</div>
-        <div class="pp-nota-obs">calculada sobre o total de ${total} questões</div>
+        <div class="pp-nota-obs">Parte 1 · só as ${metadeQ} primeiras questões (escala 0 a 10)</div>
       </div>
 
       <div class="barra-progresso" style="margin-bottom:24px"><div class="barra-fill" style="width:${pctBarra}%"></div><div class="barra-marcadores">${marcadores}</div></div>
@@ -6445,6 +6543,49 @@ function mostrarPodiumParcial() {
 
 function voltarQuestao() {
   if (estado.qAtual > 0) { estado.qAtual--; salvarEstado(); renderizarQuestao(); }
+}
+
+// BLOCO 4 · modal só-leitura da QDA1 pareada
+function verEnunciadoAnterior(qpaPar) {
+  const q = questoes.find(x => x.qpa === qpaPar);
+  if (!q) return;
+  const g = estado.genero;
+  const titulo = g === 'M' ? q.titulo_M : q.titulo_F;
+  const contextos = (g === 'M' ? q.contexto_M : q.contexto_F) || [];
+  const pergunta = g === 'M' ? q.pergunta_M : q.pergunta_F;
+  const colega = g === 'M' ? q.colega_M : q.colega_F;
+  const respDada = estado.respostas[q.qpa];
+  let respHtml = '';
+  if (respDada) {
+    const acertou = respDada === q.gabarito;
+    respHtml = `<div class="vea-resp ${acertou ? 'ok' : 'no'}">Sua resposta na parte 1: <strong>${respDada}</strong> ${acertou ? '✅' : '❌'} <span class="vea-lock">🔒 só leitura · não dá para mudar</span></div>`;
+  }
+  const html = `
+    <div class="vea-overlay" onclick="fecharEnunciadoAnterior(event)">
+      <div class="vea-card" onclick="event.stopPropagation()">
+        <button class="vea-fechar" onclick="fecharEnunciadoAnterior()">✕</button>
+        <div class="vea-titulo">👁️ Questão anterior (QPA.${String(q.qpa).padStart(2,'0')}) · ${titulo}</div>
+        ${contextos.map(c => `<p class="vea-ctx">${c}</p>`).join('')}
+        <div class="vea-fala">"${q.fala}" <em>— ${colega}</em></div>
+        <div class="vea-perg">❓ ${pergunta}</div>
+        <div class="vea-alts">
+          <div class="vea-alt ${q.gabarito==='A'?'certa':''}"><b>A)</b> ${q.alts[0]}</div>
+          <div class="vea-alt ${q.gabarito==='B'?'certa':''}"><b>B)</b> ${q.alts[1]}</div>
+        </div>
+        ${respHtml}
+        <button class="vea-voltar" onclick="fecharEnunciadoAnterior()">Voltar para a questão atual ➜</button>
+      </div>
+    </div>`;
+  const div = document.createElement('div');
+  div.id = 'veaWrap';
+  div.innerHTML = html;
+  document.body.appendChild(div);
+}
+
+function fecharEnunciadoAnterior(ev) {
+  if (ev && ev.type === 'click' && ev.target && !ev.target.classList.contains('vea-overlay') && ev.target.tagName !== 'BUTTON') return;
+  const w = document.getElementById('veaWrap');
+  if (w) w.remove();
 }
 
 
@@ -6504,6 +6645,23 @@ function mostrarResultado() {
       else erros++;
     }
   });
+
+  // 3 NOTAS (modelo INNER · média aritmética entre metades · cada uma 0–10)
+  const metadeQ = Math.ceil(questoes.length / 2); // 11 questões por metade
+  let acertosP1 = 0, acertosP2 = 0;
+  questoes.forEach((q, i) => {
+    if (estado.respostas[q.qpa] === q.gabarito) {
+      if (i < metadeQ) acertosP1++; else acertosP2++;
+    }
+  });
+  const totalP2 = questoes.length - metadeQ;
+  const notaP1 = (acertosP1 / metadeQ * 10);
+  const notaP2 = (acertosP2 / totalP2 * 10);
+  const notaP1Str = notaP1.toFixed(1).replace('.', ',');
+  const notaP2Str = notaP2.toFixed(1).replace('.', ',');
+  const clsP1 = notaP1 >= 7 ? '' : (notaP1 >= 5 ? 'medio' : 'baixo');
+  const clsP2 = notaP2 >= 7 ? '' : (notaP2 >= 5 ? 'medio' : 'baixo');
+
   const pontos = Math.round(acertos / questoes.length * 100);
   const cls = pontos >= 70 ? '' : (pontos >= 50 ? 'medio' : 'baixo');
   let msg;
@@ -6627,6 +6785,28 @@ function mostrarResultado() {
         <div class="stats-numero">${erros}</div>
         <div class="stats-label">Erros</div>
         <div class="stats-icone">❌</div>
+      </div>
+    </div>
+
+    <!-- 3 NOTAS · modelo INNER (média aritmética entre as duas metades) -->
+    <div class="tres-notas-grid">
+      <div class="tn-card">
+        <div class="tn-titulo">📘 Parte 1</div>
+        <div class="tn-sub">Questões 1 a ${metadeQ}</div>
+        <div class="tn-nota ${clsP1}">${notaP1Str}</div>
+        <div class="tn-detalhe">${acertosP1}/${metadeQ} acertos · escala 0 a 10</div>
+      </div>
+      <div class="tn-card">
+        <div class="tn-titulo">📗 Parte 2</div>
+        <div class="tn-sub">Questões ${metadeQ + 1} a ${questoes.length}</div>
+        <div class="tn-nota ${clsP2}">${notaP2Str}</div>
+        <div class="tn-detalhe">${acertosP2}/${totalP2} acertos · escala 0 a 10</div>
+      </div>
+      <div class="tn-card tn-card-total">
+        <div class="tn-titulo">🏆 Nota Final</div>
+        <div class="tn-sub">Todas as ${questoes.length} questões</div>
+        <div class="tn-nota ${cls}">${pontos10}</div>
+        <div class="tn-detalhe">média das duas partes · escala 0 a 10</div>
       </div>
     </div>
     
