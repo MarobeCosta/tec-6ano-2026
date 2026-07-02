@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAV04-REV-TEC6-V01.18 · 6º ANO · Tipos de Dados · 2026</title>
+<title>NAV04-REV-TEC6-V01.20 · 6º ANO · Tipos de Dados · 2026</title>
 <!--
+  V01.19 · CORREÇÃO "Pirulito Morango" (sobre V01.18):
+  · tabela de prêmios da tela inicial mostrava só "🍓 Morango" · corrigido para "🍓 Pirulito Morango" (consistente com o resto do sistema)
+  · VERSAO_ATUAL atualizada para 'V01.19' (quebra-cache força atualização no navegador do aluno)
+
   V01.18 · QUEBRA-CACHE + CORREÇÃO DO OBJETIVO (sobre V01.17):
   · QUEBRA-CACHE: se a versão publicada muda, o localStorage antigo é limpo automaticamente (const VERSAO_ATUAL='V01.18') · resolve o "Bem-vindo de volta" que restaurava tela de versão antiga
   · CORREÇÃO: bloco "Objetivo desta revisão" tinha conteúdo do 9º ano (IA/problemas sociais) · trocado para o do 6º (tipos de dados, entrada/saída, coleções)
@@ -3338,7 +3342,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
 </head>
 <body class="modo-bv">
 <!-- SELO DE VERSÃO FLUTUANTE · visível em TODAS as telas (canto inferior direito) -->
-<div id="seloVersaoFix" class="selo-versao-fix" data-versao-suffix="EST">V01.18-EST</div>
+<div id="seloVersaoFix" class="selo-versao-fix" data-versao-suffix="EST">V01.20-EST</div>
 
 <!-- Faixa temática · fundo escuro · no fluxo · acima da identificação/conteúdo (não sobrepõe) -->
 <div class="frase-tematica">
@@ -3585,7 +3589,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
     <span class="bv-emoji-flut e4">📱</span>
   </div>
   <div class="bv-titulo">🕊️ Revisão preparatória para 2ª AAIM · 2º Bim.</div>
-  <div class="bv-subtitulo" data-versao-suffix="EST">6º ano · Tecnologia · NAV04-REV-TEC6-V01.18-EST · 2026</div>
+  <div class="bv-subtitulo" data-versao-suffix="EST">6º ano · Tecnologia · NAV04-REV-TEC6-V01.20-EST · 2026</div>
   <div class="bv-faixa-tema">Tipos de dados: criando uma coleção de máquinas</div>
 
   <div class="bv-secao bv-secao-objetivo">
@@ -3618,7 +3622,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
       <div style="display:flex;align-items:center;gap:10px;background:#6B4423;color:white;padding:10px 14px;border-radius:10px"><strong style="flex:0 0 80px">9,5-9,9</strong><strong style="flex:0 0 160px">EXCELENTE</strong><span>🍭 Pirulito Megalito</span></div>
       <div style="display:flex;align-items:center;gap:10px;background:#8B5A2B;color:white;padding:10px 14px;border-radius:10px"><strong style="flex:0 0 80px">9,0-9,4</strong><strong style="flex:0 0 160px">ÓTIMO</strong><span>🍫🍫 2 Bis</span></div>
       <div style="display:flex;align-items:center;gap:10px;background:#1F4F86;color:white;padding:10px 14px;border-radius:10px"><strong style="flex:0 0 80px">8,5-8,9</strong><strong style="flex:0 0 160px">MUITO BOM</strong><span>🍭 Pirulito 7Belo</span></div>
-      <div style="display:flex;align-items:center;gap:10px;background:#2E6BA8;color:white;padding:10px 14px;border-radius:10px"><strong style="flex:0 0 80px">8,0-8,4</strong><strong style="flex:0 0 160px">BOM</strong><span>🍓 Morango</span></div>
+      <div style="display:flex;align-items:center;gap:10px;background:#2E6BA8;color:white;padding:10px 14px;border-radius:10px"><strong style="flex:0 0 80px">8,0-8,4</strong><strong style="flex:0 0 160px">BOM</strong><span>🍓 Pirulito Morango</span></div>
       <div style="display:flex;align-items:center;gap:10px;background:#5B9BD5;color:white;padding:10px 14px;border-radius:10px"><strong style="flex:0 0 80px">7,5-7,9</strong><strong style="flex:0 0 160px">SATISFATÓRIO PLENO</strong><span>🍭 Pirulito Napolitano</span></div>
       <div style="display:flex;align-items:center;gap:10px;background:#2E7D32;color:white;padding:10px 14px;border-radius:10px"><strong style="flex:0 0 80px">7,0-7,4</strong><strong style="flex:0 0 160px">SATISFATÓRIO</strong><span>🍭 Pirulito Chaves</span></div>
       <div style="display:flex;align-items:center;gap:10px;background:#43A047;color:white;padding:10px 14px;border-radius:10px"><strong style="flex:0 0 80px">6,5-6,9</strong><strong style="flex:0 0 160px">PROGREDINDO BEM</strong><span>🍫 1 Bis</span></div>
@@ -3639,7 +3643,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
 
 <div class="tela-login" id="telaLogin" style="display:none">
   <div class="logo-titulo">REVISÃO 2B · 6º ANO</div>
-  <div class="subtitulo" data-versao-suffix="EST">NAV04-REV-TEC6-V01.18-EST · Tecnologia · Pensamento Computacional</div>
+  <div class="subtitulo" data-versao-suffix="EST">NAV04-REV-TEC6-V01.20-EST · Tecnologia · Pensamento Computacional</div>
   <div class="tema-cabec">Tipos de dados: criando uma coleção de máquinas</div>
   
   <form class="form-login" id="formLogin" onsubmit="iniciarQuiz(event)">
@@ -4004,7 +4008,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
     <input type="hidden" id="area" name="area">
     <input type="hidden" id="genero">
     <button type="button" class="botao-principal" onclick="iniciarQuiz({preventDefault:function(){}})">Começar a revisão 🚀</button>
-    <div class="aviso-beta" data-versao-suffix="EST">⚙️ Versão NAV04-REV-TEC6-V01.18-EST · 22 questões · Tipos de Dados · Pensamento Computacional</div>
+    <div class="aviso-beta" data-versao-suffix="EST">⚙️ Versão NAV04-REV-TEC6-V01.20-EST · 22 questões · Tipos de Dados · Pensamento Computacional</div>
   </form>
   
   <div class="info-prof">
@@ -5184,7 +5188,7 @@ window.onload = () => {
     if (typeof localStorage === 'undefined' || !localStorage) return;
 
     // QUEBRA-CACHE · se a versão publicada mudou, limpa o estado antigo automaticamente
-    const VERSAO_ATUAL = 'V01.18';
+    const VERSAO_ATUAL = 'V01.20';
     const versaoSalva = localStorage.getItem('nav06_versao');
     if (versaoSalva !== VERSAO_ATUAL) {
       localStorage.removeItem('nav06_estado');
@@ -6877,8 +6881,8 @@ function mostrarResultado() {
   }
   else if (pontos10num >= 8.0) {
     farol7Cor = '#2E6BA8'; farol7Label = 'BOM';
-    premio = 'Pirulito de Morango'; premioEmoji = '🍓';
-    premioFrase = 'Bom trabalho! Você está no caminho certo. Mais um pouquinho de esforço e o Pirulito de Morango é seu no fim do bimestre!';
+    premio = 'Pirulito Morango'; premioEmoji = '🍓';
+    premioFrase = 'Bom trabalho! Você está no caminho certo. Mais um pouquinho de esforço e o Pirulito Morango é seu no fim do bimestre!';
   }
   else if (pontos10num >= 7.5) {
     farol7Cor = '#5B9BD5'; farol7Label = 'SATISFATÓRIO PLENO';
@@ -7027,7 +7031,7 @@ function mostrarResultado() {
           { fx:'9,5-9,9',  nv:'EXCELENTE',         pr:'🍭 Pirulito Megalito',        bg:'#6B4423', cor:'white', minP:9.5 },
           { fx:'9,0-9,4',  nv:'ÓTIMO',             pr:'🍫🍫 2 Bis',                  bg:'#8B5A2B', cor:'white', minP:9.0 },
           { fx:'8,5-8,9',  nv:'MUITO BOM',         pr:'🍭 Pirulito 7Belo',          bg:'#1F4F86', cor:'white', minP:8.5 },
-          { fx:'8,0-8,4',  nv:'BOM',               pr:'🍓 Pirulito de Morango',                 bg:'#2E6BA8', cor:'white', minP:8.0 },
+          { fx:'8,0-8,4',  nv:'BOM',               pr:'🍓 Pirulito Morango',                 bg:'#2E6BA8', cor:'white', minP:8.0 },
           { fx:'7,5-7,9',  nv:'SATISFATÓRIO PLENO',pr:'🍭 Pirulito Napolitano',     bg:'#5B9BD5', cor:'white', minP:7.5 },
           { fx:'7,0-7,4',  nv:'SATISFATÓRIO',      pr:'🍭 Pirulito Chaves',         bg:'#2E7D32', cor:'white', minP:7.0 },
           { fx:'6,5-6,9',  nv:'PROGREDINDO BEM',   pr:'🍫 1 Bis',                   bg:'#43A047', cor:'white', minP:6.5 },
@@ -7694,7 +7698,7 @@ function acessarModoProf() {
     trocarPerfilVersao('PROF');
     revelarCena();
     let html = `<div class="modo-prof">
-      <h2>📋 Modo Professor · NAV04-REV-TEC6-V01.18-PROF · 6º ano · 2B · Tipos de Dados</h2>
+      <h2>📋 Modo Professor · NAV04-REV-TEC6-V01.20-PROF · 6º ano · 2B · Tipos de Dados</h2>
       <p><strong>Gabarito (B-B-A-A cíclico · GAB.MOD.04):</strong></p>
       <table class="gabarito-tabela">
         <tr><th>QPA</th><th>Gab</th><th>QPA</th><th>Gab</th><th>QPA</th><th>Gab</th><th>QPA</th><th>Gab</th></tr>`;
@@ -7708,7 +7712,7 @@ function acessarModoProf() {
       html += '</tr>';
     }
     html += `</table>
-      <p style="margin-top:20px"><strong>📌 NAV04-REV-TEC6-V01.18-PROF · ${questoes.length}/22 questões · Tipos de dados, entrada/saída, coleções</strong></p>
+      <p style="margin-top:20px"><strong>📌 NAV04-REV-TEC6-V01.20-PROF · ${questoes.length}/22 questões · Tipos de dados, entrada/saída, coleções</strong></p>
       <ul style="margin:14px 0 14px 24px;line-height:1.8">
         <li><strong>Personagens F (com par M):</strong> Bianca/Bruno · Yasmin/Kauê · Camila/Rafael · Sofia/Murilo · Clara/Otávio · Letícia/Davi · Helena/Thiago · Larissa/Igor · Beatriz/Lucas · Aurora/Henrique</li>
         <li><strong>Colegas auxiliares:</strong> Ariadne/Adriano · Vinícius · Mariana/Marcelo · Pâmela · Jéssica</li>
