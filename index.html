@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAV04-REV-TEC6-V01.20 · 6º ANO · Tipos de Dados · 2026</title>
+<title>NAV04-REV-TEC6-V01.23 · 6º ANO · Tipos de Dados · 2026</title>
 <!--
   V01.19 · CORREÇÃO "Pirulito Morango" (sobre V01.18):
   · tabela de prêmios da tela inicial mostrava só "🍓 Morango" · corrigido para "🍓 Pirulito Morango" (consistente com o resto do sistema)
@@ -3342,7 +3342,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
 </head>
 <body class="modo-bv">
 <!-- SELO DE VERSÃO FLUTUANTE · visível em TODAS as telas (canto inferior direito) -->
-<div id="seloVersaoFix" class="selo-versao-fix" data-versao-suffix="EST">V01.20-EST</div>
+<div id="seloVersaoFix" class="selo-versao-fix" data-versao-suffix="EST">V01.23-EST</div>
 
 <!-- Faixa temática · fundo escuro · no fluxo · acima da identificação/conteúdo (não sobrepõe) -->
 <div class="frase-tematica">
@@ -3589,7 +3589,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
     <span class="bv-emoji-flut e4">📱</span>
   </div>
   <div class="bv-titulo">🕊️ Revisão preparatória para 2ª AAIM · 2º Bim.</div>
-  <div class="bv-subtitulo" data-versao-suffix="EST">6º ano · Tecnologia · NAV04-REV-TEC6-V01.20-EST · 2026</div>
+  <div class="bv-subtitulo" data-versao-suffix="EST">6º ano · Tecnologia · NAV04-REV-TEC6-V01.23-EST · 2026</div>
   <div class="bv-faixa-tema">Tipos de dados: criando uma coleção de máquinas</div>
 
   <div class="bv-secao bv-secao-objetivo">
@@ -3643,7 +3643,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
 
 <div class="tela-login" id="telaLogin" style="display:none">
   <div class="logo-titulo">REVISÃO 2B · 6º ANO</div>
-  <div class="subtitulo" data-versao-suffix="EST">NAV04-REV-TEC6-V01.20-EST · Tecnologia · Pensamento Computacional</div>
+  <div class="subtitulo" data-versao-suffix="EST">NAV04-REV-TEC6-V01.23-EST · Tecnologia · Pensamento Computacional</div>
   <div class="tema-cabec">Tipos de dados: criando uma coleção de máquinas</div>
   
   <form class="form-login" id="formLogin" onsubmit="iniciarQuiz(event)">
@@ -4008,7 +4008,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
     <input type="hidden" id="area" name="area">
     <input type="hidden" id="genero">
     <button type="button" class="botao-principal" onclick="iniciarQuiz({preventDefault:function(){}})">Começar a revisão 🚀</button>
-    <div class="aviso-beta" data-versao-suffix="EST">⚙️ Versão NAV04-REV-TEC6-V01.20-EST · 22 questões · Tipos de Dados · Pensamento Computacional</div>
+    <div class="aviso-beta" data-versao-suffix="EST">⚙️ Versão NAV04-REV-TEC6-V01.23-EST · 22 questões · Tipos de Dados · Pensamento Computacional</div>
   </form>
   
   <div class="info-prof">
@@ -4314,7 +4314,7 @@ const questoes = [
     fala: "Para juntar só o que é visual, eu agrupo a imagem e o vídeo curto.",
     pergunta_F: "A escolha de agrupamento da Duda está certa ou errada?",
     pergunta_M: "A escolha de agrupamento do Dudu está certa ou errada?",
-    alts: ["Está ERRADA. O conteúdo visual seria o parágrafo explicativo junto com o vídeo curto, porque os dois têm muitas palavras.", "Está CERTA. A imagem e o vídeo curto formam o conjunto visual, porque os dois são vistos com os olhos."],
+    alts: ["Está ERRADA. O conteúdo visual seria o parágrafo explicativo junto com o vídeo curto, porque os dois têm muitas palavras.", "Está CERTA. A imagem e o vídeo curto formam o conjunto visual, porque os dois são vistos com os olhos e mostram algo para ver."],
     gabarito: "B",
     soc_a: { dim: "5. Abertura ao novo → 5.1 Curiosidade → 🔍 5.1.1 Observar com atenção", txt: "Quem escolhe A confunde texto com imagem. Parágrafo é feito de palavras para ler, não de conteúdo visual." },
     soc_b: { dim: "2. Engajamento → 2.3 Análise → 🖼️ 2.3.1 Classificar por característica", txt: "Quem escolhe B agrupa pelo que importa: imagem e vídeo são vistos com os olhos. Isso é formar uma coleção pelo tipo." },
@@ -4353,7 +4353,7 @@ const questoes = [
     fala: "No conjunto dos textos eu coloco o parágrafo explicativo e o título, porque os dois são feitos de palavras para ler.",
     pergunta_F: "A afirmação da Duda sobre o conjunto dos textos está certa ou errada?",
     pergunta_M: "A afirmação do Dudu sobre o conjunto dos textos está certa ou errada?",
-    alts: ["Está ERRADA. O título não conta como texto, então o conjunto dos textos teria só o parágrafo junto com a imagem do projeto.", "Está CERTA. Parágrafo explicativo e título são textos, porque os dois são formados por palavras que a gente lê."],
+    alts: ["Está ERRADA. O título não conta como texto, então o conjunto dos textos teria só o parágrafo junto com a imagem.", "Está CERTA. Parágrafo explicativo e título são textos, porque os dois são formados por palavras que a gente lê."],
     gabarito: "B",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 📝 2.3.2 Reconhecer o tipo certo", txt: "Quem escolhe A tira o título do grupo dos textos sem motivo e ainda joga uma imagem junto. Título é texto, imagem não é." },
     soc_b: { dim: "5. Abertura ao novo → 5.1 Curiosidade → 📝 5.1.2 Agrupar pelo que é igual", txt: "Quem escolhe B percebe que título e parágrafo são feitos de palavras. Os dois são texto e ficam no mesmo conjunto." },
@@ -4473,7 +4473,7 @@ const questoes = [
     fala: "A resposta digitada pelo jogador é um exemplo de entrada, e a mensagem que aparece na tela é um exemplo de saída.",
     pergunta_F: "A afirmação da Luana é verdadeira ou falsa?",
     pergunta_M: "A afirmação do Lucas é verdadeira ou falsa?",
-    alts: ["FALSA. A resposta digitada é a saída, e a mensagem na tela é a entrada, porque o jogador lê a mensagem por último.", "VERDADEIRA. O que o jogador digita é a entrada, e o que o programa mostra na tela é a saída."],
+    alts: ["FALSA. A resposta digitada é a saída, e a mensagem na tela é a entrada, porque o jogador lê a mensagem por último.", "VERDADEIRA. O que o jogador digita é a entrada, e o que o programa mostra na tela depois é a saída do sistema."],
     gabarito: "B",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → ↔️ 2.3.5 Diferenciar entrada de saída", txt: "Quem escolhe A troca os papéis. O que entra no sistema é o que o usuário digita; o que sai é o que o programa mostra." },
     soc_b: { dim: "5. Abertura ao novo → 5.1 Curiosidade → ↔️ 5.1.4 Entender o caminho do dado", txt: "Quem escolhe B segue o caminho certo: o dado entra pelo teclado (entrada) e sai pela tela (saída)." },
@@ -4512,7 +4512,7 @@ const questoes = [
     fala: "No caixa eletrônico, a senha digitada pela pessoa é a entrada, e o saldo mostrado na tela é a saída.",
     pergunta_F: "A identificação da Luana está certa ou errada?",
     pergunta_M: "A identificação do Lucas está certa ou errada?",
-    alts: ["Está ERRADA. No caixa eletrônico não existe entrada nem saída, porque a máquina faz tudo sozinha sem a pessoa digitar nada.", "Está CERTA. A senha digitada é a entrada e o saldo mostrado na tela é a saída, igual num programa de computador."],
+    alts: ["Está ERRADA. No caixa eletrônico não existe entrada nem saída, porque a máquina faz tudo sozinha sem a pessoa.", "Está CERTA. A senha digitada é a entrada e o saldo mostrado na tela é a saída, igual num programa de computador."],
     gabarito: "B",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → ↔️ 2.3.6 Aplicar o conceito", txt: "Quem escolhe A acha que a máquina faz tudo sozinha. Mas a pessoa digita a senha · isso é uma entrada." },
     soc_b: { dim: "5. Abertura ao novo → 5.2 Pensamento crítico → ↔️ 5.2.1 Transferir o conceito", txt: "Quem escolhe B usa o conceito num novo exemplo: senha é entrada, saldo é saída. Entrada e saída estão em todo lugar." },
@@ -4552,7 +4552,7 @@ const questoes = [
     fala: "Se a resposta digitada pelo usuário for o número 5, a saída do sistema será a mensagem 'Resposta correta!'.",
     pergunta_F: "A análise da Bia sobre o código é verdadeira ou falsa?",
     pergunta_M: "A análise do Bento sobre o código é verdadeira ou falsa?",
-    alts: ["VERDADEIRA. Quando a entrada é o número 5, o código manda mostrar a saída 'Resposta correta!', como está programado.", "FALSA. Mesmo que o usuário digite o número 5, o sistema nunca mostra 'Resposta correta!', porque o código ignora o que é digitado."],
+    alts: ["VERDADEIRA. Quando a entrada é o número 5, o código manda mostrar na tela a saída 'Resposta correta!', exatamente como foi programado.", "FALSA. Mesmo que o usuário digite o número 5, o sistema nunca mostra 'Resposta correta!', porque o código ignora o que é digitado."],
     gabarito: "A",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🧩 2.3.7 Seguir a regra do código", txt: "Quem escolhe A ignora a regra escrita no código. Se a condição diz '5 → Resposta correta!', é isso que acontece." },
     soc_b: { dim: "5. Abertura ao novo → 5.2 Pensamento crítico → 🧩 5.2.2 Ler a condição", txt: "Quem escolhe B lê a condição: entrada 5 leva à saída 'Resposta correta!'. O código faz o que está escrito." },
@@ -4591,7 +4591,7 @@ const questoes = [
     fala: "Se o jogador digitar o número 8, o sistema também mostra 'Resposta correta!', porque qualquer número serve para essa condição.",
     pergunta_F: "A análise da Bia sobre a entrada 8 é verdadeira ou falsa?",
     pergunta_M: "A análise do Bento sobre a entrada 8 é verdadeira ou falsa?",
-    alts: ["FALSA. A condição só vale para o número 5, então digitando 8 o sistema não mostra 'Resposta correta!'.", "VERDADEIRA. Digitando 8, o sistema mostra 'Resposta correta!', porque a condição aceita qualquer número que o jogador escolher."],
+    alts: ["FALSA. A condição do código só vale para o número 5, então digitando o número 8 o sistema não mostra 'Resposta correta!' na tela.", "VERDADEIRA. Digitando 8, o sistema mostra 'Resposta correta!', porque a condição aceita qualquer número que o jogador escolher."],
     gabarito: "A",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🧩 2.3.8 Respeitar o limite da condição", txt: "Quem escolhe A acha que qualquer número serve. Mas a condição é específica: só o 5 ativa a mensagem." },
     soc_b: { dim: "1. Autogestão → 1.1 Foco → 🎯 1.1.2 Ler a condição com precisão", txt: "Quem escolhe B respeita o que o código diz: a condição é 'se for 5'. O número 8 não bate com ela." },
@@ -4631,7 +4631,7 @@ const questoes = [
     fala: "O bloco que guarda a frase 'Bem-vindo ao jogo!' representa um dado do tipo texto.",
     pergunta_F: "A resposta da Gio está certa ou errada?",
     pergunta_M: "A resposta do Gui está certa ou errada?",
-    alts: ["Está ERRADA. A frase 'Bem-vindo ao jogo!' é um dado do tipo número, porque tem várias letras que podem ser contadas uma a uma.", "Está CERTA. A frase 'Bem-vindo ao jogo!' é um dado do tipo texto, porque é feita de palavras escritas."],
+    alts: ["Está ERRADA. A frase 'Bem-vindo ao jogo!' é um dado do tipo número, porque tem várias letras que podem ser contadas uma a uma.", "Está CERTA. A frase 'Bem-vindo ao jogo!' é um dado do tipo texto, porque é feita de palavras escritas com letras e espaços."],
     gabarito: "B",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🔤 2.3.9 Não confundir contar com calcular", txt: "Quem escolhe A confunde contar letras com fazer conta. A frase é texto, mesmo tendo muitas letras." },
     soc_b: { dim: "5. Abertura ao novo → 5.1 Curiosidade → 🔤 5.1.5 Reconhecer texto no bloco", txt: "Quem escolhe B identifica o tipo certo: uma frase com palavras é dado do tipo texto." },
@@ -4670,7 +4670,7 @@ const questoes = [
     fala: "O bloco que guarda a quantidade de pontos do jogador representa um dado do tipo número.",
     pergunta_F: "A resposta da Gio sobre o bloco dos pontos está certa ou errada?",
     pergunta_M: "A resposta do Gui sobre o bloco dos pontos está certa ou errada?",
-    alts: ["Está ERRADA. A quantidade de pontos é do tipo texto, porque ela também é mostrada na tela junto com outras palavras.", "Está CERTA. A quantidade de pontos é do tipo número, porque é um valor que aumenta e pode entrar em contas."],
+    alts: ["Está ERRADA. A quantidade de pontos é do tipo texto, porque ela também é mostrada na tela junto com outras palavras.", "Está CERTA. A quantidade de pontos é do tipo número, porque é um valor que aumenta e pode entrar em contas do jogo."],
     gabarito: "B",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🔢 2.3.10 Olhar a função do dado", txt: "Quem escolhe A se prende ao fato de aparecer na tela. Mas o que define é a função: pontos entram em conta, são número." },
     soc_b: { dim: "1. Autogestão → 1.1 Foco → 🔢 1.1.3 Tipo pela função", txt: "Quem escolhe B olha a função: os pontos aumentam e entram em conta. Isso é dado do tipo número." },
@@ -4750,7 +4750,7 @@ const questoes = [
     fala: "O dado que guarda se a lâmpada está acesa ou apagada é do tipo booleano, porque só tem duas opções.",
     pergunta_F: "A resposta da Alice está certa ou errada?",
     pergunta_M: "A resposta do Alan está certa ou errada?",
-    alts: ["Está CERTA. Acesa ou apagada são só duas opções (ligado/desligado), e isso é dado do tipo booleano.", "Está ERRADA. Esse dado é do tipo texto, porque as palavras 'acesa' e 'apagada' são formadas por várias letras."],
+    alts: ["Está CERTA. Acesa ou apagada são só duas opções (ligado/desligado), e por isso esse dado é do tipo booleano.", "Está ERRADA. Esse dado é do tipo texto, porque as palavras 'acesa' e 'apagada' são formadas por várias letras."],
     gabarito: "A",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → ✅ 2.3.12 Olhar a quantidade de opções", txt: "Quem escolhe A se prende às letras das palavras. Mas o que importa é que só há duas opções: aceso ou apagado." },
     soc_b: { dim: "5. Abertura ao novo → 5.2 Pensamento crítico → ✅ 5.2.4 Aplicar o booleano", txt: "Quem escolhe B aplica a ideia: dois estados possíveis (ligado/desligado) é a cara do dado booleano." },
@@ -4790,7 +4790,7 @@ const questoes = [
     fala: "A pontuação total dos robôs deve ser guardada como dado do tipo número, porque permite fazer somas e cálculos.",
     pergunta_F: "A escolha da Clara é adequada ou não?",
     pergunta_M: "A escolha do Caio é adequada ou não?",
-    alts: ["NÃO é adequada. A pontuação deveria ser do tipo imagem, porque os pontos podem ser mostrados como estrelinhas coloridas na tela.", "É adequada. A pontuação total deve ser número, porque é somada a cada acerto e entra em cálculos."],
+    alts: ["NÃO é adequada. A pontuação deveria ser do tipo imagem, porque os pontos podem ser mostrados como estrelinhas coloridas na tela.", "É adequada. A pontuação total deve ser do tipo número, porque é somada a cada acerto e entra em cálculos e comparações do jogo."],
     gabarito: "B",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🔢 2.3.13 Tipo pela operação", txt: "Quem escolhe A pensa só na aparência (estrelinhas). Mas a pontuação precisa ser somada, e o que soma é número." },
     soc_b: { dim: "1. Autogestão → 1.3 Decisão → 🔢 1.3.1 Escolher o tipo certo", txt: "Quem escolhe B decide pelo uso: a pontuação é somada, então tem que ser número. Tipo certo faz o programa funcionar." },
@@ -4908,7 +4908,7 @@ const questoes = [
     fala: "O nome do robô e a mensagem de vitória ficam no mesmo grupo, porque os dois são dados do tipo texto.",
     pergunta_F: "A explicação da Sofia está certa ou errada?",
     pergunta_M: "A explicação do Samuel está certa ou errada?",
-    alts: ["Está CERTA. Nome do robô e mensagem de vitória são feitos de palavras, então os dois são dados do tipo texto.", "Está ERRADA. A mensagem de vitória é número, porque aparece só quando o jogador chega a uma pontuação alta no final."],
+    alts: ["Está CERTA. Nome do robô e mensagem de vitória são feitos de palavras, então os dois são dados do tipo texto no jogo.", "Está ERRADA. A mensagem de vitória é número, porque aparece só quando o jogador chega a uma pontuação alta no final."],
     gabarito: "A",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🔤 2.3.16 Tipo pela natureza do dado", txt: "Quem escolhe A confunde a mensagem com a pontuação que a dispara. A mensagem em si é feita de palavras." },
     soc_b: { dim: "5. Abertura ao novo → 5.1 Curiosidade → 🔤 5.1.8 Reunir textos no mesmo grupo", txt: "Quem escolhe B vê que nome e mensagem são palavras. Os dois são texto e formam o mesmo conjunto." },
@@ -4949,7 +4949,7 @@ const questoes = [
     fala: "Se o usuário digitar a entrada 12, a saída do sistema será a mensagem 'Número maior que 10'.",
     pergunta_F: "A análise da Pérola está certa ou errada?",
     pergunta_M: "A análise do Pedro está certa ou errada?",
-    alts: ["Está ERRADA. Digitando 12, o sistema mostra 'Número menor ou igual a 10', porque 12 está perto do número 10.", "Está CERTA. Como 12 é maior que 10, a saída do sistema será a mensagem 'Número maior que 10'."],
+    alts: ["Está ERRADA. Digitando 12, o sistema mostra 'Número menor ou igual a 10', porque 12 está perto do número 10.", "Está CERTA. Como 12 é maior que 10, a saída do sistema será a mensagem 'Número maior que 10' na tela do jogo."],
     gabarito: "B",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🧩 2.3.17 Comparar com a condição", txt: "Quem escolhe A acha que 'estar perto' conta. Mas a condição é 'maior que 10', e 12 é maior que 10." },
     soc_b: { dim: "5. Abertura ao novo → 5.2 Pensamento crítico → 🧩 5.2.5 Aplicar a comparação", txt: "Quem escolhe B compara certo: 12 é maior que 10, então a saída é 'Número maior que 10'. A condição decide." },
@@ -4988,7 +4988,7 @@ const questoes = [
     fala: "Se o usuário digitar exatamente 10, a saída será 'Número menor ou igual a 10', porque 10 não é maior que 10.",
     pergunta_F: "A análise da Pérola sobre a entrada 10 está certa ou errada?",
     pergunta_M: "A análise do Pedro sobre a entrada 10 está certa ou errada?",
-    alts: ["Está ERRADA. Digitando 10, a saída é 'Número maior que 10', porque o número 10 já conta como sendo maior que 10.", "Está CERTA. Como 10 não é maior que 10, a saída do sistema será 'Número menor ou igual a 10'."],
+    alts: ["Está ERRADA. Digitando 10, a saída é 'Número maior que 10', porque o número 10 já conta como sendo maior que 10.", "Está CERTA. Como 10 não é maior que 10, a saída do sistema será a mensagem 'Número menor ou igual a 10' na tela."],
     gabarito: "B",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🎯 2.3.18 Atenção ao limite exato", txt: "Quem escolhe A acha que 10 é maior que 10. Mas 10 é igual a 10, não maior · cai na outra saída." },
     soc_b: { dim: "1. Autogestão → 1.1 Foco → 🎯 1.1.4 Cuidar do caso-limite", txt: "Quem escolhe B presta atenção no limite: 'maior que 10' não inclui o próprio 10. Então 10 cai em 'menor ou igual a 10'." },
@@ -5028,7 +5028,7 @@ const questoes = [
     fala: "Na Entrada A, com o número 12, o ator vai dizer 'Acertou!', porque 12 é menor que 15.",
     pergunta_F: "A análise da Íris sobre a Entrada A está certa ou errada?",
     pergunta_M: "A análise do Ígor sobre a Entrada A está certa ou errada?",
-    alts: ["Está CERTA. Como 12 é menor que 15, a condição é verdadeira e o ator diz 'Acertou!'.", "Está ERRADA. Com o número 12, o ator diz 'Tente novamente!', porque 12 é um número par e o código só aceita ímpares."],
+    alts: ["Está CERTA. Como 12 é menor que 15, a condição é verdadeira e por isso o ator diz a mensagem 'Acertou!' na tela.", "Está ERRADA. Com o número 12, o ator diz 'Tente novamente!', porque 12 é um número par e o código só aceita ímpares."],
     gabarito: "A",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🧩 2.3.19 Seguir só a condição escrita", txt: "Quem escolhe A inventa uma regra de par/ímpar que não existe. A condição é só 'menor que 15'." },
     soc_b: { dim: "5. Abertura ao novo → 5.2 Pensamento crítico → 🧩 5.2.6 Verificar a condição", txt: "Quem escolhe B segue a condição: 12 é menor que 15, é verdadeiro, então o ator diz 'Acertou!'." },
@@ -5067,7 +5067,7 @@ const questoes = [
     fala: "Na Entrada B, com o número 15, o ator vai dizer 'Tente novamente!', porque 15 não é menor que 15.",
     pergunta_F: "A análise da Íris sobre a Entrada B está certa ou errada?",
     pergunta_M: "A análise do Ígor sobre a Entrada B está certa ou errada?",
-    alts: ["Está CERTA. Como 15 não é menor que 15, a condição é falsa e o ator diz 'Tente novamente!'.", "Está ERRADA. Com o número 15, o ator diz 'Acertou!', porque 15 é exatamente o número que aparece na condição do código."],
+    alts: ["Está CERTA. Como o número 15 não é menor que 15, a condição do código é falsa e por isso o ator diz 'Tente novamente!'.", "Está ERRADA. Com o número 15, o ator diz 'Acertou!', porque 15 é exatamente o número que aparece na condição do código."],
     gabarito: "A",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🎯 2.3.20 Cuidar do valor exato", txt: "Quem escolhe A acha que aparecer na condição já é acertar. Mas 'menor que 15' não inclui o próprio 15." },
     soc_b: { dim: "1. Autogestão → 1.1 Foco → 🎯 1.1.5 Verificar o limite", txt: "Quem escolhe B vê o limite: 15 não é menor que 15. A condição é falsa, então o ator diz 'Tente novamente!'." },
@@ -5106,7 +5106,7 @@ const questoes = [
     fala: "Na Entrada C, com o número 20, o ator vai dizer 'Tente novamente!', porque 20 não é menor que 15.",
     pergunta_F: "A análise da Íris sobre a Entrada C está certa ou errada?",
     pergunta_M: "A análise do Ígor sobre a Entrada C está certa ou errada?",
-    alts: ["Está ERRADA. Com o número 20, o ator diz 'Acertou!', porque 20 é um número maior e números maiores sempre acertam.", "Está CERTA. Como 20 não é menor que 15, a condição é falsa e o ator diz 'Tente novamente!'."],
+    alts: ["Está ERRADA. Com o número 20, o ator diz 'Acertou!', porque 20 é um número maior e números maiores sempre acertam.", "Está CERTA. Como 20 não é menor que 15, a condição é falsa e por isso o ator diz a mensagem 'Tente novamente!'."],
     gabarito: "B",
     soc_a: { dim: "2. Engajamento → 2.3 Análise → 🧩 2.3.21 Não inverter a regra", txt: "Quem escolhe A inverte a lógica: acha que número maior acerta. Mas a regra premia quem é menor que 15." },
     soc_b: { dim: "5. Abertura ao novo → 5.2 Pensamento crítico → 🧩 5.2.7 Aplicar a regra correta", txt: "Quem escolhe B aplica a regra certa: 20 não é menor que 15, então a condição é falsa e vem 'Tente novamente!'." },
@@ -5145,7 +5145,7 @@ const questoes = [
     fala: "Resumindo: só a Entrada A (12) faz o ator dizer 'Acertou!'. As Entradas B (15) e C (20) fazem o ator dizer 'Tente novamente!'.",
     pergunta_F: "O resumo da Íris sobre as três entradas está certo ou errado?",
     pergunta_M: "O resumo do Ígor sobre as três entradas está certo ou errado?",
-    alts: ["Está CERTO. Só a Entrada A (12) é menor que 15 e gera 'Acertou!'; as Entradas B (15) e C (20) geram 'Tente novamente!'.", "Está ERRADO. Todas as três entradas fazem o ator dizer 'Acertou!', porque qualquer número testado conta como acerto no código."],
+    alts: ["Está CERTO. Só a Entrada A (12) é menor que 15 e gera 'Acertou!'; já as Entradas B (15) e C (20) geram 'Tente novamente!'.", "Está ERRADO. Todas as três entradas fazem o ator dizer 'Acertou!', porque qualquer número testado conta como acerto no código."],
     gabarito: "A",
     soc_a: { dim: "2. Engajamento → 2.4 Resolução → 🔁 2.4.1 Reunir os resultados", txt: "Quem escolhe A ignora os testes feitos. Só o 12 é menor que 15; 15 e 20 não são." },
     soc_b: { dim: "1. Autogestão → 1.3 Decisão → 🔁 1.3.2 Concluir com base nos testes", txt: "Quem escolhe B junta os três resultados certos: 12 acerta; 15 e 20 não. Conclusão fechada com base nos testes." },
@@ -5188,7 +5188,7 @@ window.onload = () => {
     if (typeof localStorage === 'undefined' || !localStorage) return;
 
     // QUEBRA-CACHE · se a versão publicada mudou, limpa o estado antigo automaticamente
-    const VERSAO_ATUAL = 'V01.20';
+    const VERSAO_ATUAL = 'V01.23';
     const versaoSalva = localStorage.getItem('nav06_versao');
     if (versaoSalva !== VERSAO_ATUAL) {
       localStorage.removeItem('nav06_estado');
@@ -7322,6 +7322,8 @@ function iniciarRefazer() {
   }
   estado.tentativa = 2;
   estado.refazendo = true;
+  estado.revisandoErradas = false; // limpa flag do modo A.5 (correção) para não conflitar
+  estado.modoRevisao = false;
   // apaga as respostas das erradas (aluno vai responder de novo) · mantém as certas
   estado.erradas1.forEach(i => { delete estado.respostas[questoes[i].qpa]; });
   estado.qAtual = estado.erradas1[0];
@@ -7339,12 +7341,18 @@ function proximaRefazer() {
   if (pendentes.length > 0) {
     estado.qAtual = pendentes[0];
     salvarEstado();
+    // garante que a tela de feedback some e a do quiz apareça (evita tela vazia)
+    document.getElementById('telaFeedback').style.display = 'none';
+    document.getElementById('telaResultado').style.display = 'none';
+    document.body.className = 'modo-quiz';
+    document.getElementById('telaQuiz').style.display = 'block';
     renderizarQuestao();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
     // todas as erradas refeitas · fecha 2ª tentativa e mostra resultado comparativo
     estado.refazendo = false;
     salvarEstado();
+    document.getElementById('telaFeedback').style.display = 'none';
     document.getElementById('telaQuiz').style.display = 'none';
     mostrarResultado();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -7390,6 +7398,10 @@ function proximaErrada() {
 }
 
 function renderizarQuestaoRevisao() {
+  // proteção · se qAtual saiu da faixa (estado inconsistente), volta ao início · evita tela vazia
+  if (estado.qAtual == null || estado.qAtual < 0 || estado.qAtual >= questoes.length || !questoes[estado.qAtual]) {
+    estado.qAtual = 0;
+  }
   const q = questoes[estado.qAtual];
   const g = estado.genero;
   const titulo = g === 'M' ? q.titulo_M : q.titulo_F;
@@ -7698,7 +7710,7 @@ function acessarModoProf() {
     trocarPerfilVersao('PROF');
     revelarCena();
     let html = `<div class="modo-prof">
-      <h2>📋 Modo Professor · NAV04-REV-TEC6-V01.20-PROF · 6º ano · 2B · Tipos de Dados</h2>
+      <h2>📋 Modo Professor · NAV04-REV-TEC6-V01.23-PROF · 6º ano · 2B · Tipos de Dados</h2>
       <p><strong>Gabarito (B-B-A-A cíclico · GAB.MOD.04):</strong></p>
       <table class="gabarito-tabela">
         <tr><th>QPA</th><th>Gab</th><th>QPA</th><th>Gab</th><th>QPA</th><th>Gab</th><th>QPA</th><th>Gab</th></tr>`;
@@ -7712,7 +7724,7 @@ function acessarModoProf() {
       html += '</tr>';
     }
     html += `</table>
-      <p style="margin-top:20px"><strong>📌 NAV04-REV-TEC6-V01.20-PROF · ${questoes.length}/22 questões · Tipos de dados, entrada/saída, coleções</strong></p>
+      <p style="margin-top:20px"><strong>📌 NAV04-REV-TEC6-V01.23-PROF · ${questoes.length}/22 questões · Tipos de dados, entrada/saída, coleções</strong></p>
       <ul style="margin:14px 0 14px 24px;line-height:1.8">
         <li><strong>Personagens F (com par M):</strong> Bianca/Bruno · Yasmin/Kauê · Camila/Rafael · Sofia/Murilo · Clara/Otávio · Letícia/Davi · Helena/Thiago · Larissa/Igor · Beatriz/Lucas · Aurora/Henrique</li>
         <li><strong>Colegas auxiliares:</strong> Ariadne/Adriano · Vinícius · Mariana/Marcelo · Pâmela · Jéssica</li>
