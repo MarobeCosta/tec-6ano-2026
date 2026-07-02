@@ -3,10 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAV04-REV-TEC6-V01.10 · 6º ANO · Tipos de Dados · 2026</title>
+<title>NAV04-REV-TEC6-V01.17 · 6º ANO · Tipos de Dados · 2026</title>
 <!--
+  V01.17 · FRENTE B · MODO REFAZER DAS ERRADAS (2 tentativas) (sobre V01.16):
+  · nota da 1ª tentativa guardada (estado.nota1) ao chegar no resultado · erradas1 registradas
+  · se nota1 < 8,0 · botão "🔄 Refazer as N erradas (2ª tentativa)" · reusa a mesma tela da questão (P.1.A)
+  · durante a 2ª tentativa · destrava só as erradas · aluno responde de novo · fluxo via proximaRefazer
+  · lista de resultados: antes de refazer SÓ aponta "errou · refaça" (esconde gabarito · P.2.A) · correções completas só após a 2ª tentativa
+  · resultado da 2ª tentativa: card comparativo 1ª vs 2ª lado a lado (P.3.A) · as 2 notas ficam registradas p/ o professor decidir no INNER
+  · piso do refazer: nota < 8,0 (estudante que precisa acessar as erradas antes da avaliação Alura)
+
+  V01.16 · INVERSÃO citações ↔ botão ver mais (sobre V01.15):
+  · antes: card "Citações inspiradoras" em cima · botão "Ver mais sobre essa questão" embaixo
+  · agora: botão "Ver mais sobre essa questão" EM CIMA · citações EMBAIXO
+  · aplicado nas 2 renders (principal + revisão)
+
+  V01.15 · CORREÇÃO SOMBRA + TÍTULO COLORIDO (sobre V01.14):
+  · removida a text-shadow BRANCA (rgba 255,255,255) que borrava texto branco no fundo escuro · trocada por sombra escura sutil rgba(0,0,0,0.5)
+  · título "Dados que organizam o cuidado" agora COLORIDO letra a letra (paleta clara: amarelo/verde/azul/rosa/roxo) · legível no fundo escuro
+  · atende pedido do Marcos: sem sombra na mesma cor · uma cor por letra (como versão anterior)
+
+  V01.14 · FAIXA EM 2 LINHAS HORIZONTAIS (sobre V01.13):
+  · Linha 1 = Título "🗂️ Dados que organizam o cuidado" • "Junho Violeta & Vermelho" (lado a lado · divisor •)
+  · Linha 2 = "💜❤️ 23 a 28.06.2026 · Pessoa Idosa & Doação de Sangue"
+  · max-width da faixa 680→920px para caber título+tema numa linha só no desktop (dispositivo real · alunos usam PC na escola, celular proibido)
+  · identificação e saída permanecem FORA da faixa
+
+  V01.13 · FAIXA TEMÁTICA COM FUNDO ESCURO (sobre V01.12):
+  · a .frase-tematica ERA position:fixed (flutuava no canto sup. esq. e TAMPAVA a identificação/conteúdo)
+  · agora é FAIXA no fluxo (position:static) · fundo escuro roxo · centralizada · acima da identificação do estudante
+  · cores do texto clareadas p/ contraste no fundo escuro: título branco · Violeta #C8A2FF · Vermelho #FF6B6B · subtema verde-claro #7EE787
+  · 3 blocos CSS de .frase-tematica neutralizados (não há mais fixed) · pombinhas mantidas ao lado do título
+
+  V01.12 · FRENTE A · REPOSIÇÃO DE CARDS + CORREÇÃO DE ERRADAS (sobre V01.11):
+  · A.1 · ordem dos cards na questão: Dica → Glossário → Socioemocional A → Socioemocional B (dica/glossário sobem, socioemocionais descem) · nas 2 renders (principal + revisão)
+  · A.4 · botão "❌ Corrigir só as N questões que errei" na tela de resultado · abre a 1ª errada em modo revisão
+  · A.5 · dentro da correção, botão "❌ Próxima errada ➜" pula para a próxima errada · na última, vira "🏠 Voltar à lista de resultados" (P.3.A)
+  · nova flag estado.revisandoErradas + funções indicesErradas / reverErradas / proximaErrada
+
+  V01.11 · SELO DE VERSÃO EM TODAS AS TELAS (sobre V01.10):
+  · novo badge flutuante fixo (.selo-versao-fix) no canto inferior direito · position:fixed · z-index 9998
+  · aparece em TODAS as telas (boas-vindas, login, quiz, pódium, projetos, resultado) · antes só nas telas iniciais
+  · permite o professor conferir a versão mesmo com o aluno já dentro das atividades
+  · oculto na impressão (@media print) · acompanha o suffix EST/PROF
+  · CORREÇÃO · as 5 telas estáticas (boas-vindas, login, instruções, modo professor x2) também passaram de V01.00 para V01.11
+
   V01.10 · 5 BLOCOS COMPLETOS (sobre V01.04) · comando vindo do 9º ano:
   · B0 · AUDITORIA das 22 questões · gabaritos OK · S.02.06 OK (correta nunca mais longa) · 11A/11B sem trinca · 0 correções necessárias (base já limpa)
+  · B0-B (VARREDURA-2) · auditadas DICA + FB_ACERTO + FB_ERRO + ESTRELA das 22 · todas coerentes com o gabarito (a correta, a dica, o feedback e a estrela contam a mesma história) · 0 reescritas
   · B1 · notas por metade INNER · já existia (V01.03)
   · B2 · título articulado · já existia (V01.04)
   · B3 · hierarquia de tamanho · já existia (V01.04)
@@ -969,7 +1013,42 @@ body.feedback-erro {
   .tres-notas-grid { grid-template-columns: 1fr; }
 }
 
+/* FRENTE B · comparativo de tentativas */
+.comparativo-tent { background: var(--branco); border-radius: 18px; padding: 20px; margin: 0 auto 18px; max-width: 660px; box-shadow: 0 6px 20px rgba(224, 168, 44, 0.25); border-top: 5px solid #E0A82C; text-align: center; }
+.ct-titulo { font-size: 18px; font-weight: 800; color: #B8841C; margin-bottom: 14px; }
+.ct-cards { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.ct-card { flex: 1; max-width: 180px; background: var(--cinza-suave); border-radius: 14px; padding: 14px; }
+.ct-card-2 { background: var(--verde-claro); }
+.ct-lbl { font-size: 13px; color: var(--cinza-medio); font-weight: 600; margin-bottom: 4px; }
+.ct-nota { font-size: 38px; font-weight: 800; color: var(--azul-paz); line-height: 1; }
+.ct-nota.medio { color: var(--laranja-energia); }
+.ct-nota.baixo { color: var(--vermelho-alerta); }
+.ct-seta { font-size: 26px; color: var(--cinza-medio); }
+.ct-msg { margin-top: 14px; font-size: 15px; font-weight: 700; color: var(--cinza-medio); }
+.ct-msg-ok { color: var(--verde-vida); }
+.ct-obs { margin-top: 6px; font-size: 12px; color: var(--cinza-medio); font-style: italic; }
+
 .tela-resultado { display: none; }
+
+/* ============ SELO DE VERSÃO FLUTUANTE (todas as telas) ============ */
+.selo-versao-fix {
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  z-index: 9998;
+  background: rgba(74, 42, 122, 0.88);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 9px;
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  user-select: none;
+}
+@media print { .selo-versao-fix { display: none !important; } }
 
 /* ============ BLOCO 4 · QUESTÕES PAREADAS (QDA2 → lembrete QDA1) ============ */
 .resumo-par { background: #FFF8E7; border-left: 4px solid var(--laranja-energia); border-radius: 10px; padding: 12px 14px; margin: 10px 0 14px; font-size: 14px; line-height: 1.5; color: #5a4a2a; }
@@ -1521,23 +1600,20 @@ body.feedback-erro {
 
 /* Frase temática fixa · topo esquerdo · em todas as páginas */
 .frase-tematica {
-  position: fixed;
-  top: 16px;
-  left: 42px;
-  z-index: 50;
-  pointer-events: none;
+  position: static;
+  pointer-events: auto;
   font-family: 'Segoe UI', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 2px;
 }
 
 .frase-tematica-titulo {
   font-size: 26px;
   font-weight: 800;
-  color: #4A2A7A;
-  text-shadow: 2px 2px 0 rgba(255,255,255,0.85), -1px -1px 0 rgba(255,255,255,0.6);
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   letter-spacing: 0.3px;
   margin-bottom: 4px;
   line-height: 1.15;
@@ -1546,7 +1622,7 @@ body.feedback-erro {
   font-size: 18px;
   font-weight: 800;
   color: #6B4B9C;
-  text-shadow: 2px 2px 0 rgba(255,255,255,0.8), -1px -1px 0 rgba(255,255,255,0.6);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   letter-spacing: 0.5px;
   display: flex;
   gap: 2px;
@@ -1555,8 +1631,8 @@ body.feedback-erro {
 .frase-tematica-linha2 {
   font-size: 13px;
   font-weight: 800;
-  color: #1F5A18;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.45), 0 0 4px rgba(255,255,255,0.5);
+  color: #7EE787;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.55);
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-top: 2px;
@@ -2311,23 +2387,20 @@ body.modo-prova select {
 
 /* Frase temática fixa · topo esquerdo · em todas as páginas */
 .frase-tematica {
-  position: fixed;
-  top: 16px;
-  left: 42px;
-  z-index: 50;
-  pointer-events: none;
+  position: static;
+  pointer-events: auto;
   font-family: 'Segoe UI', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 2px;
 }
 
 .frase-tematica-titulo {
   font-size: 26px;
   font-weight: 800;
-  color: #4A2A7A;
-  text-shadow: 2px 2px 0 rgba(255,255,255,0.85), -1px -1px 0 rgba(255,255,255,0.6);
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   letter-spacing: 0.3px;
   margin-bottom: 4px;
   line-height: 1.15;
@@ -2336,7 +2409,7 @@ body.modo-prova select {
   font-size: 18px;
   font-weight: 800;
   color: #6B4B9C;
-  text-shadow: 2px 2px 0 rgba(255,255,255,0.8), -1px -1px 0 rgba(255,255,255,0.6);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   letter-spacing: 0.5px;
   display: flex;
   gap: 2px;
@@ -2345,8 +2418,8 @@ body.modo-prova select {
 .frase-tematica-linha2 {
   font-size: 13px;
   font-weight: 800;
-  color: #1F5A18;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.45), 0 0 4px rgba(255,255,255,0.5);
+  color: #7EE787;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.55);
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-top: 2px;
@@ -2764,13 +2837,34 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
 /* Imagem 3 · 1ª linha "Junho Violeta & Vermelho" · cores agora INLINE por palavra (violeta + vermelho) · regras nth-child de cor removidas */
 .frase-tematica-linha1 { color: #1F2937; }  /* cor base · fallback do & */
 
-/* Cabeçalho · pombas espelhadas linha 1 · linha 2 alinhada à esquerda */
-.frase-tematica { position: fixed; top: 16px; left: 16px; z-index: 50; pointer-events: none; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-.frase-cabecalho-linha1 { display: flex; align-items: center; gap: 8px; }
+/* Cabeçalho · FAIXA com fundo escuro (não fixa · no fluxo · acima da identificação) */
+.frase-tematica {
+  position: static;
+  z-index: 1;
+  pointer-events: auto;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #2E1A47, #4A2A7A);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin: 0 auto 18px;
+  max-width: 920px;
+  box-shadow: 0 4px 16px rgba(46, 26, 71, 0.35);
+}
+.frase-cabecalho-linha1 { display: flex; align-items: center; justify-content: center; gap: 8px; }
 .frase-cabecalho-linha1 .frase-tematica-linha1 { display: flex; gap: 2px; }
-.frase-pombinha { position: static; width: 28px; height: 28px; opacity: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25)); animation: pombinhaFrase 5s ease-in-out infinite; flex-shrink: 0; }
+.frase-pombinha { position: static; width: 28px; height: 28px; opacity: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35)); animation: pombinhaFrase 5s ease-in-out infinite; flex-shrink: 0; }
 .frase-pombinha.pombinha-dir { transform: scaleX(-1); animation: pombinhaFraseEspelho 5s ease-in-out infinite; }
-.frase-tematica-linha2 { text-align: left; align-self: flex-start; }
+.frase-tematica-linha2 { text-align: center; align-self: center; }
+.faixa-linha-dupla { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; }
+.faixa-linha-dupla .frase-tematica-titulo { margin-bottom: 0; }
+.faixa-linha-dupla .frase-cabecalho-linha1 { margin: 0; }
+.faixa-divisor { color: rgba(255,255,255,0.5); font-size: 18px; }
+@media (max-width: 560px) { .faixa-divisor { display: none; } }
 @keyframes pombinhaFraseEspelho {
   0%, 100% { transform: translateX(0) scaleX(-1); }
   50% { transform: translateX(-3px) scaleX(-1); }
@@ -3238,10 +3332,14 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
 </style>
 </head>
 <body class="modo-bv">
+<!-- SELO DE VERSÃO FLUTUANTE · visível em TODAS as telas (canto inferior direito) -->
+<div id="seloVersaoFix" class="selo-versao-fix" data-versao-suffix="EST">V01.17-EST</div>
 
-<!-- Frase temática fixa · topo esquerdo · todas as páginas -->
+<!-- Faixa temática · fundo escuro · no fluxo · acima da identificação/conteúdo (não sobrepõe) -->
 <div class="frase-tematica">
-  <div class="frase-tematica-titulo">🗂️ Dados que organizam o cuidado</div>
+  <div class="faixa-linha-dupla">
+  <div class="frase-tematica-titulo">🗂️ <span class="frase-letra" style="color:#FFD166">D</span><span class="frase-letra" style="color:#7EE787">a</span><span class="frase-letra" style="color:#8ECAE6">d</span><span class="frase-letra" style="color:#FFADAD">o</span><span class="frase-letra" style="color:#C8A2FF">s</span><span style="display:inline-block;width:6px"></span><span class="frase-letra" style="color:#FF9E64">q</span><span class="frase-letra" style="color:#A0E7E5">u</span><span class="frase-letra" style="color:#FFD166">e</span><span style="display:inline-block;width:6px"></span><span class="frase-letra" style="color:#7EE787">o</span><span class="frase-letra" style="color:#8ECAE6">r</span><span class="frase-letra" style="color:#FFADAD">g</span><span class="frase-letra" style="color:#C8A2FF">a</span><span class="frase-letra" style="color:#FF9E64">n</span><span class="frase-letra" style="color:#A0E7E5">i</span><span class="frase-letra" style="color:#FFD166">z</span><span class="frase-letra" style="color:#7EE787">a</span><span class="frase-letra" style="color:#8ECAE6">m</span><span style="display:inline-block;width:6px"></span><span class="frase-letra" style="color:#FFADAD">o</span><span style="display:inline-block;width:6px"></span><span class="frase-letra" style="color:#C8A2FF">c</span><span class="frase-letra" style="color:#FF9E64">u</span><span class="frase-letra" style="color:#A0E7E5">i</span><span class="frase-letra" style="color:#FFD166">d</span><span class="frase-letra" style="color:#7EE787">a</span><span class="frase-letra" style="color:#8ECAE6">d</span><span class="frase-letra" style="color:#FFADAD">o</span></div>
+  <span class="faixa-divisor">•</span>
   <div class="frase-cabecalho-linha1">
     <svg class="frase-pombinha pombinha-esq" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="15" cy="17" rx="7" ry="4" fill="#FFFFFF" stroke="#6B4B9C" stroke-width="0.5"/>
@@ -3251,7 +3349,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
       <path d="M11 15 Q6 8 2 11 Q6 17 12 18 Z" fill="#F0F0F0"/>
     </svg>
     <div class="frase-tematica-linha1">
-    <span class="frase-letra" style="color:#7C3AED">J</span><span class="frase-letra" style="color:#7C3AED">u</span><span class="frase-letra" style="color:#7C3AED">n</span><span class="frase-letra" style="color:#7C3AED">h</span><span class="frase-letra" style="color:#7C3AED">o</span><span style="margin-left:6px"></span><span class="frase-letra" style="color:#7C3AED">V</span><span class="frase-letra" style="color:#7C3AED">i</span><span class="frase-letra" style="color:#7C3AED">o</span><span class="frase-letra" style="color:#7C3AED">l</span><span class="frase-letra" style="color:#7C3AED">e</span><span class="frase-letra" style="color:#7C3AED">t</span><span class="frase-letra" style="color:#7C3AED">a</span><span style="margin:0 5px;color:#1F2937">&</span><span class="frase-letra" style="color:#DC2626">V</span><span class="frase-letra" style="color:#DC2626">e</span><span class="frase-letra" style="color:#DC2626">r</span><span class="frase-letra" style="color:#DC2626">m</span><span class="frase-letra" style="color:#DC2626">e</span><span class="frase-letra" style="color:#DC2626">l</span><span class="frase-letra" style="color:#DC2626">h</span><span class="frase-letra" style="color:#DC2626">o</span>
+    <span class="frase-letra" style="color:#C8A2FF">J</span><span class="frase-letra" style="color:#C8A2FF">u</span><span class="frase-letra" style="color:#C8A2FF">n</span><span class="frase-letra" style="color:#C8A2FF">h</span><span class="frase-letra" style="color:#C8A2FF">o</span><span style="margin-left:6px"></span><span class="frase-letra" style="color:#C8A2FF">V</span><span class="frase-letra" style="color:#C8A2FF">i</span><span class="frase-letra" style="color:#C8A2FF">o</span><span class="frase-letra" style="color:#C8A2FF">l</span><span class="frase-letra" style="color:#C8A2FF">e</span><span class="frase-letra" style="color:#C8A2FF">t</span><span class="frase-letra" style="color:#C8A2FF">a</span><span style="margin:0 5px;color:#FFFFFF">&</span><span class="frase-letra" style="color:#FF6B6B">V</span><span class="frase-letra" style="color:#FF6B6B">e</span><span class="frase-letra" style="color:#FF6B6B">r</span><span class="frase-letra" style="color:#FF6B6B">m</span><span class="frase-letra" style="color:#FF6B6B">e</span><span class="frase-letra" style="color:#FF6B6B">l</span><span class="frase-letra" style="color:#FF6B6B">h</span><span class="frase-letra" style="color:#FF6B6B">o</span>
     </div>
     <svg class="frase-pombinha pombinha-dir" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="15" cy="17" rx="7" ry="4" fill="#FFFFFF" stroke="#6B4B9C" stroke-width="0.5"/>
@@ -3260,6 +3358,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
       <circle cx="22" cy="12" r="0.5" fill="#2D2D2D"/>
       <path d="M11 15 Q6 8 2 11 Q6 17 12 18 Z" fill="#F0F0F0"/>
     </svg>
+  </div>
   </div>
   <div class="frase-tematica-linha2">💜❤️ 23 a 28.06.2026 · Pessoa Idosa & Doação de Sangue</div>
 </div>
@@ -3481,7 +3580,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
     <span class="bv-emoji-flut e4">📱</span>
   </div>
   <div class="bv-titulo">🕊️ Revisão preparatória para 2ª AAIM · 2º Bim.</div>
-  <div class="bv-subtitulo" data-versao-suffix="EST">6º ano · Tecnologia · NAV04-REV-TEC6-V01.00-EST · 2026</div>
+  <div class="bv-subtitulo" data-versao-suffix="EST">6º ano · Tecnologia · NAV04-REV-TEC6-V01.17-EST · 2026</div>
   <div class="bv-faixa-tema">Tipos de dados: criando uma coleção de máquinas</div>
 
   <div class="bv-secao bv-secao-objetivo">
@@ -3535,7 +3634,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
 
 <div class="tela-login" id="telaLogin" style="display:none">
   <div class="logo-titulo">REVISÃO 2B · 6º ANO</div>
-  <div class="subtitulo" data-versao-suffix="EST">NAV04-REV-TEC6-V01.00-EST · Tecnologia · Pensamento Computacional</div>
+  <div class="subtitulo" data-versao-suffix="EST">NAV04-REV-TEC6-V01.17-EST · Tecnologia · Pensamento Computacional</div>
   <div class="tema-cabec">Tipos de dados: criando uma coleção de máquinas</div>
   
   <form class="form-login" id="formLogin" onsubmit="iniciarQuiz(event)">
@@ -3900,7 +3999,7 @@ body.modo-bv .qpa-deco-lateral { display: none !important; }
     <input type="hidden" id="area" name="area">
     <input type="hidden" id="genero">
     <button type="button" class="botao-principal" onclick="iniciarQuiz({preventDefault:function(){}})">Começar a revisão 🚀</button>
-    <div class="aviso-beta" data-versao-suffix="EST">⚙️ Versão NAV04-REV-TEC6-V01.00-EST · 22 questões · Tipos de Dados · Pensamento Computacional</div>
+    <div class="aviso-beta" data-versao-suffix="EST">⚙️ Versão NAV04-REV-TEC6-V01.17-EST · 22 questões · Tipos de Dados · Pensamento Computacional</div>
   </form>
   
   <div class="info-prof">
@@ -5067,7 +5166,7 @@ const questoes = [
   }
 ];
 
-let estado = { nome: '', turma: '', area: '', genero: '', qAtual: 0, respostas: {}, duvidas: {}, paginaAtual: 1, iniciado: false, podiumParcialVisto: false };
+let estado = { nome: '', turma: '', area: '', genero: '', qAtual: 0, respostas: {}, duvidas: {}, paginaAtual: 1, iniciado: false, podiumParcialVisto: false, revisandoErradas: false, tentativa: 1, nota1: null, respostas1: null, refazendo: false, erradas1: [] };
 let configProf = {
   permitirRefazer: false,
   mostrarFarol7Cores: true,
@@ -5761,15 +5860,28 @@ function renderizarQuestao() {
         </div>
         ${caixaAdaptativa}
       </div>
+      <button class="botao-saber-mais" onclick="toggleSaberMais()">📚 Ver mais sobre essa questão ↓</button>
       <div class="card card-citacoes">
         <div class="card-lateral-titulo">📜 Citações inspiradoras</div>
         <div class="citacao-item">"${q.sb_cit1.txt}"<strong>— ${q.sb_cit1.fonte}</strong></div>
         <div class="citacao-item">"${q.sb_cit2.txt}"<strong>— ${q.sb_cit2.fonte}</strong></div>
       </div>
-      <button class="botao-saber-mais" onclick="toggleSaberMais()">📚 Ver mais sobre essa questão ↓</button>
     </div>
     
     <div class="coluna-lateral">
+      <div class="card card-dica">
+        <div class="card-lateral-titulo">💡 Dica</div>
+        <div class="card-conteudo">
+          <p><strong>${q.dica.estr}</strong></p>
+          <p>${q.dica.txt}</p>
+        </div>
+      </div>
+      <div class="card card-glossario">
+        <div class="card-lateral-titulo">📘 Glossário</div>
+        <div class="card-conteudo">
+          ${q.glos.map(g => `<p><strong>${g.termo}·</strong> ${g.def}</p>`).join('')}
+        </div>
+      </div>
       <div class="card card-soc-a">
         <div class="card-lateral-titulo">🌱 Socioemocional · sobre a Alternativa A</div>
         <div class="card-conteudo">
@@ -5782,19 +5894,6 @@ function renderizarQuestao() {
         <div class="card-conteudo">
           <div class="dimensao">${q.soc_b.dim}</div>
           ${q.soc_b.txt}
-        </div>
-      </div>
-      <div class="card card-dica">
-        <div class="card-lateral-titulo">💡 Dica</div>
-        <div class="card-conteudo">
-          <p><strong>${q.dica.estr}</strong></p>
-          <p>${q.dica.txt}</p>
-        </div>
-      </div>
-      <div class="card card-glossario">
-        <div class="card-lateral-titulo">📘 Glossário</div>
-        <div class="card-conteudo">
-          ${q.glos.map(g => `<p><strong>${g.termo}·</strong> ${g.def}</p>`).join('')}
         </div>
       </div>
     </div>
@@ -6163,6 +6262,17 @@ function acionarAjuda(blocoId, tipo) {
 }
 
 function proximaQuestao() {
+  // FRENTE B · durante a 2ª tentativa (refazer erradas) · mostra feedback e vai à próxima errada
+  if (estado.refazendo) {
+    const modoFb = (configProf && configProf.modoFeedback) || 'durante';
+    if (modoFb === 'durante') {
+      mostrarFeedbackIntermediario();
+      // o botão continuar do feedback chamará proximaRefazer (ver continuarAposFeedback)
+    } else {
+      proximaRefazer();
+    }
+    return;
+  }
   const modoFeedback = (configProf && configProf.modoFeedback) || 'durante';
   if (modoFeedback === 'durante') {
     mostrarFeedbackIntermediario();
@@ -6282,13 +6392,13 @@ function mostrarFeedbackIntermediario() {
           </div>
         </div>
         
+        <button class="botao-saber-mais" onclick="toggleSaberMais()">📚 Ver mais sobre essa questão ↓</button>
+        
         <div class="card card-citacoes">
           <div class="card-lateral-titulo">📜 Citações inspiradoras</div>
           <div class="citacao-item">"${q.sb_cit1.txt}"<strong>— ${q.sb_cit1.fonte}</strong></div>
           <div class="citacao-item">"${q.sb_cit2.txt}"<strong>— ${q.sb_cit2.fonte}</strong></div>
         </div>
-        
-        <button class="botao-saber-mais" onclick="toggleSaberMais()">📚 Ver mais sobre essa questão ↓</button>
       </div>
       
       <div class="coluna-lateral">
@@ -6443,6 +6553,12 @@ function mostrarFeedbackIntermediario() {
 }
 
 function continuarAposFeedback() {
+  // FRENTE B · 2ª tentativa · após ver o feedback da errada refeita, vai à próxima errada
+  if (estado.refazendo) {
+    document.getElementById('telaFeedback').style.display = 'none';
+    proximaRefazer();
+    return;
+  }
   if (estado.qAtual === questoes.length - 1) {
     mostrarProjetosIntegradores();
   } else {
@@ -6677,6 +6793,43 @@ function mostrarResultado() {
   // Converter pontuação 0-100 para 0-10
   const pontos10 = (pontos / 10).toFixed(2);
   const pontos10num = parseFloat(pontos10);
+
+  // FRENTE B · capturar nota da 1ª tentativa (só na 1ª vez que chega ao resultado)
+  if (estado.tentativa === 1 && estado.nota1 === null) {
+    estado.nota1 = pontos10num;
+    estado.respostas1 = Object.assign({}, estado.respostas);
+    estado.erradas1 = [];
+    questoes.forEach((q, i) => {
+      if (estado.respostas[q.qpa] && estado.respostas[q.qpa] !== q.gabarito) estado.erradas1.push(i);
+    });
+    salvarEstado();
+  }
+  const podeRefazer = (estado.nota1 !== null && estado.nota1 < 8.0 && estado.erradas1.length > 0);
+  // FRENTE B · antes de refazer (nota<8, tentativa 1) a lista SÓ aponta erro · esconde gabarito
+  const ocultarCorrecao = (podeRefazer && estado.tentativa === 1);
+
+  // FRENTE B · card comparativo 1ª vs 2ª tentativa (só após refazer)
+  let comparativoTentativas = '';
+  if (estado.tentativa === 2 && estado.nota1 !== null) {
+    const nota2 = pontos10num;
+    const n1 = estado.nota1.toFixed(2).replace('.', ',');
+    const n2 = nota2.toFixed(2).replace('.', ',');
+    const cls1 = estado.nota1 >= 7 ? '' : (estado.nota1 >= 5 ? 'medio' : 'baixo');
+    const cls2 = nota2 >= 7 ? '' : (nota2 >= 5 ? 'medio' : 'baixo');
+    const melhorou = nota2 > estado.nota1;
+    const setaMsg = melhorou ? `📈 Você melhorou ${(nota2 - estado.nota1).toFixed(2).replace('.', ',')} ponto(s) na 2ª tentativa!` : (nota2 === estado.nota1 ? 'Você manteve a mesma nota.' : 'A 2ª tentativa ficou abaixo da 1ª.');
+    comparativoTentativas = `
+    <div class="comparativo-tent">
+      <div class="ct-titulo">🔁 Comparativo de tentativas</div>
+      <div class="ct-cards">
+        <div class="ct-card"><div class="ct-lbl">1ª tentativa</div><div class="ct-nota ${cls1}">${n1}</div></div>
+        <div class="ct-seta">➜</div>
+        <div class="ct-card ct-card-2"><div class="ct-lbl">2ª tentativa</div><div class="ct-nota ${cls2}">${n2}</div></div>
+      </div>
+      <div class="ct-msg ${melhorou ? 'ct-msg-ok' : ''}">${setaMsg}</div>
+      <div class="ct-obs">As duas notas ficam registradas · o professor decide como usar no cálculo final.</div>
+    </div>`;
+  }
   
   // Classificação FAROL 3 cores (BI) - critério baseado na nota
   let farol3, farol3Cor, farol3Label;
@@ -6788,6 +6941,7 @@ function mostrarResultado() {
       </div>
     </div>
 
+    ${comparativoTentativas}
     <!-- 3 NOTAS · modelo INNER (média aritmética entre as duas metades) -->
     <div class="tres-notas-grid">
       <div class="tn-card">
@@ -7008,14 +7162,15 @@ function mostrarResultado() {
     
     <!-- MEIO: Tabela completa de respostas -->
     <div class="card-tabela-respostas">
-      <h3 style="font-size:22px;color:var(--roxo-conviva);margin-bottom:16px">📋 Conferência de respostas</h3>
+      <h3 style="font-size:22px;color:var(--roxo-conviva);margin-bottom:16px">📋 Conferência de respostas</h3>`;
+
+  revHtml += `
       <table class="tabela-conferencia">
         <thead>
           <tr>
             <th>QPA</th>
             <th>Tema</th>
-            <th>Sua resposta</th>
-            <th>Gabarito</th>
+            ${ocultarCorrecao ? '' : '<th>Sua resposta</th><th>Gabarito</th>'}
             <th>Resultado</th>
             <th>Ação</th>
           </tr>
@@ -7028,7 +7183,17 @@ function mostrarResultado() {
     const g = estado.genero;
     const titulo = (g === 'M' ? q.titulo_M : q.titulo_F).split(' E ')[0]; // Primeiro nome
     
-    revHtml += `
+    if (ocultarCorrecao) {
+      // só aponta acertou/errou · sem gabarito · sem botão ver (evita ler a resposta antes de refazer)
+      revHtml += `
+      <tr class="${acertou ? 'linha-acerto' : (resp === '—' ? 'linha-nao-resp' : 'linha-erro')}">
+        <td><strong>QPA.${String(q.qpa).padStart(2,'0')}</strong></td>
+        <td style="text-align:left;font-size:14px">${titulo}</td>
+        <td>${acertou ? '✅ Acertou' : (resp === '—' ? '⚪ Em branco' : '❌ Errou · refaça')}</td>
+        <td>${acertou ? '—' : '<span style="font-size:12px;color:#B8841C;font-weight:700">🔄 na 2ª tentativa</span>'}</td>
+      </tr>`;
+    } else {
+      revHtml += `
       <tr class="${acertou ? 'linha-acerto' : (resp === '—' ? 'linha-nao-resp' : 'linha-erro')}">
         <td><strong>QPA.${String(q.qpa).padStart(2,'0')}</strong></td>
         <td style="text-align:left;font-size:14px">${titulo}</td>
@@ -7037,6 +7202,7 @@ function mostrarResultado() {
         <td>${acertou ? '✅' : (resp === '—' ? '⚪' : '❌')}</td>
         <td><button onclick="reverQuestaoEspecifica(${q.qpa})" class="btn-ver-questao" style="background:linear-gradient(135deg, var(--azul-paz), #1F4F86);color:white;border:none;padding:6px 12px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap" title="Abre esta questão em modo revisão">🔍 Ver questão</button></td>
       </tr>`;
+    }
   });
   
   revHtml += `
@@ -7046,7 +7212,9 @@ function mostrarResultado() {
     
     <!-- BOTÕES -->
     <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
-      <button class="botao-recomeçar" onclick="reverQuestoes()" style="background:var(--azul-paz);flex:1;min-width:200px">🔍 Rever questões (estudar)</button>
+      ${(podeRefazer && estado.tentativa === 1) ? `<button class="botao-recomeçar" onclick="iniciarRefazer()" style="background:linear-gradient(135deg, #E0A82C, #B8841C);flex:1;min-width:100%;margin-bottom:4px">🔄 Refazer as ${estado.erradas1.length} erradas (2ª tentativa · sua nota foi ${estado.nota1.toFixed(1).replace('.', ',')})</button>` : ''}
+      ${(erros > 0 && !ocultarCorrecao) ? `<button class="botao-recomeçar" onclick="reverErradas()" style="background:linear-gradient(135deg, var(--vermelho-alerta), #8B2E2E);flex:1;min-width:100%;margin-bottom:4px">❌ Corrigir só as ${erros} questões que errei</button>` : ''}
+      ${ocultarCorrecao ? '' : `<button class="botao-recomeçar" onclick="reverQuestoes()" style="background:var(--azul-paz);flex:1;min-width:200px">🔍 Rever questões (estudar)</button>`}
       ${configProf.permitirRefazer ? '<button class="botao-recomeçar" onclick="recomecar()" style="background:var(--cinza-medio);flex:1;min-width:200px">🔄 Refazer a revisão</button>' : '<button disabled style="background:#D5D5D5;color:#888;flex:1;min-width:200px;padding:16px;border:none;border-radius:14px;font-size:18px;font-weight:700;cursor:not-allowed;font-family:inherit">🔒 Refazer (desabilitado pelo professor)</button>'}
     </div>
   `;
@@ -7117,6 +7285,91 @@ function reverQuestaoEspecifica(numeroQ) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// A.4 · lista de índices das questões erradas (na ordem)
+function indicesErradas() {
+  const arr = [];
+  questoes.forEach((q, i) => {
+    const resp = estado.respostas[q.qpa];
+    if (resp && resp !== q.gabarito) arr.push(i);
+  });
+  return arr;
+}
+
+// FRENTE B · iniciar 2ª tentativa (refazer só as erradas da 1ª)
+function iniciarRefazer() {
+  if (!estado.erradas1 || estado.erradas1.length === 0) {
+    alert('Você não tem questões erradas para refazer. 🎉');
+    return;
+  }
+  estado.tentativa = 2;
+  estado.refazendo = true;
+  // apaga as respostas das erradas (aluno vai responder de novo) · mantém as certas
+  estado.erradas1.forEach(i => { delete estado.respostas[questoes[i].qpa]; });
+  estado.qAtual = estado.erradas1[0];
+  salvarEstado();
+  document.getElementById('telaResultado').style.display = 'none';
+  document.body.className = 'modo-quiz';
+  document.getElementById('telaQuiz').style.display = 'block';
+  renderizarQuestao();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// FRENTE B · durante o refazer · ir para a próxima errada não respondida
+function proximaRefazer() {
+  const pendentes = estado.erradas1.filter(i => !estado.respostas[questoes[i].qpa]);
+  if (pendentes.length > 0) {
+    estado.qAtual = pendentes[0];
+    salvarEstado();
+    renderizarQuestao();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    // todas as erradas refeitas · fecha 2ª tentativa e mostra resultado comparativo
+    estado.refazendo = false;
+    salvarEstado();
+    document.getElementById('telaQuiz').style.display = 'none';
+    mostrarResultado();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// A.4 · abrir a 1ª questão errada em modo revisão
+function reverErradas() {
+  const err = indicesErradas();
+  if (err.length === 0) {
+    alert('Parabéns! Você não errou nenhuma questão. 🎉');
+    return;
+  }
+  estado.modoRevisao = true;
+  estado.revisandoErradas = true;
+  estado.qAtual = err[0];
+  salvarEstado();
+  document.getElementById('telaResultado').style.display = 'none';
+  document.getElementById('telaFeedback').style.display = 'none';
+  document.getElementById('telaQuiz').style.display = 'block';
+  renderizarQuestaoRevisao();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// A.5 · ir para a próxima errada · se não houver, volta à lista
+function proximaErrada() {
+  const err = indicesErradas();
+  const atual = estado.qAtual;
+  const proxima = err.find(i => i > atual);
+  if (proxima !== undefined) {
+    estado.qAtual = proxima;
+    salvarEstado();
+    renderizarQuestaoRevisao();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    // acabou · volta à lista de resultados (P.3.A)
+    estado.revisandoErradas = false;
+    salvarEstado();
+    document.getElementById('telaQuiz').style.display = 'none';
+    mostrarResultado();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
 function renderizarQuestaoRevisao() {
   const q = questoes[estado.qAtual];
   const g = estado.genero;
@@ -7160,15 +7413,28 @@ function renderizarQuestaoRevisao() {
           </div>
         </div>
       </div>
+      <button class="botao-saber-mais" onclick="toggleSaberMais()">📚 Ver mais sobre essa questão ↓</button>
       <div class="card card-citacoes">
         <div class="card-lateral-titulo">📜 Citações inspiradoras</div>
         <div class="citacao-item">"${q.sb_cit1.txt}"<strong>— ${q.sb_cit1.fonte}</strong></div>
         <div class="citacao-item">"${q.sb_cit2.txt}"<strong>— ${q.sb_cit2.fonte}</strong></div>
       </div>
-      <button class="botao-saber-mais" onclick="toggleSaberMais()">📚 Ver mais sobre essa questão ↓</button>
     </div>
     
     <div class="coluna-lateral">
+      <div class="card card-dica">
+        <div class="card-lateral-titulo">💡 Dica</div>
+        <div class="card-conteudo">
+          <p><strong>${q.dica.estr}</strong></p>
+          <p>${q.dica.txt}</p>
+        </div>
+      </div>
+      <div class="card card-glossario">
+        <div class="card-lateral-titulo">📘 Glossário</div>
+        <div class="card-conteudo">
+          ${q.glos.map(gl => `<p><strong>${gl.termo}·</strong> ${gl.def}</p>`).join('')}
+        </div>
+      </div>
       <div class="card card-soc-a">
         <div class="card-lateral-titulo">🌱 Socioemocional · sobre a Alternativa A</div>
         <div class="card-conteudo">
@@ -7181,19 +7447,6 @@ function renderizarQuestaoRevisao() {
         <div class="card-conteudo">
           <div class="dimensao">${q.soc_b.dim}</div>
           ${q.soc_b.txt}
-        </div>
-      </div>
-      <div class="card card-dica">
-        <div class="card-lateral-titulo">💡 Dica</div>
-        <div class="card-conteudo">
-          <p><strong>${q.dica.estr}</strong></p>
-          <p>${q.dica.txt}</p>
-        </div>
-      </div>
-      <div class="card card-glossario">
-        <div class="card-lateral-titulo">📘 Glossário</div>
-        <div class="card-conteudo">
-          ${q.glos.map(gl => `<p><strong>${gl.termo}·</strong> ${gl.def}</p>`).join('')}
         </div>
       </div>
     </div>
@@ -7335,18 +7588,26 @@ function renderizarQuestaoRevisao() {
   
   const btnProx = document.getElementById('btnProximo');
   btnProx.disabled = false;
-  btnProx.textContent = estado.qAtual === questoes.length - 1 ? '🏠 Voltar ao resultado' : 'Próxima ➜';
-  btnProx.onclick = () => {
-    if (estado.qAtual === questoes.length - 1) {
-      estado.modoRevisao = false;
-      document.getElementById('telaQuiz').style.display = 'none';
-      document.getElementById('telaResultado').style.display = 'block';
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    } else {
-      estado.qAtual++;
-      renderizarQuestaoRevisao();
-    }
-  };
+  if (estado.revisandoErradas) {
+    // A.5 · fluxo de correção só das erradas
+    const err = indicesErradas();
+    const temProxima = err.some(i => i > estado.qAtual);
+    btnProx.textContent = temProxima ? '❌ Próxima errada ➜' : '🏠 Voltar à lista de resultados';
+    btnProx.onclick = () => proximaErrada();
+  } else {
+    btnProx.textContent = estado.qAtual === questoes.length - 1 ? '🏠 Voltar ao resultado' : 'Próxima ➜';
+    btnProx.onclick = () => {
+      if (estado.qAtual === questoes.length - 1) {
+        estado.modoRevisao = false;
+        document.getElementById('telaQuiz').style.display = 'none';
+        document.getElementById('telaResultado').style.display = 'block';
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      } else {
+        estado.qAtual++;
+        renderizarQuestaoRevisao();
+      }
+    };
+  }
   
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
@@ -7418,7 +7679,7 @@ function acessarModoProf() {
     trocarPerfilVersao('PROF');
     revelarCena();
     let html = `<div class="modo-prof">
-      <h2>📋 Modo Professor · NAV04-REV-TEC6-V01.00-PROF · 6º ano · 2B · Tipos de Dados</h2>
+      <h2>📋 Modo Professor · NAV04-REV-TEC6-V01.17-PROF · 6º ano · 2B · Tipos de Dados</h2>
       <p><strong>Gabarito (B-B-A-A cíclico · GAB.MOD.04):</strong></p>
       <table class="gabarito-tabela">
         <tr><th>QPA</th><th>Gab</th><th>QPA</th><th>Gab</th><th>QPA</th><th>Gab</th><th>QPA</th><th>Gab</th></tr>`;
@@ -7432,7 +7693,7 @@ function acessarModoProf() {
       html += '</tr>';
     }
     html += `</table>
-      <p style="margin-top:20px"><strong>📌 NAV04-REV-TEC6-V01.00-PROF · ${questoes.length}/22 questões · Tipos de dados, entrada/saída, coleções</strong></p>
+      <p style="margin-top:20px"><strong>📌 NAV04-REV-TEC6-V01.17-PROF · ${questoes.length}/22 questões · Tipos de dados, entrada/saída, coleções</strong></p>
       <ul style="margin:14px 0 14px 24px;line-height:1.8">
         <li><strong>Personagens F (com par M):</strong> Bianca/Bruno · Yasmin/Kauê · Camila/Rafael · Sofia/Murilo · Clara/Otávio · Letícia/Davi · Helena/Thiago · Larissa/Igor · Beatriz/Lucas · Aurora/Henrique</li>
         <li><strong>Colegas auxiliares:</strong> Ariadne/Adriano · Vinícius · Mariana/Marcelo · Pâmela · Jéssica</li>
